@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <script type='text/javascript'>
+        $(function() {
+            ajax();
+
+            $('#markdown').keypress(function(e) {
+                var keyCode = e.keyCode || e.which;
+                if (keyCode == 9) {
+                   e.preventDefault();
+                   insertAtCaret('markdown', '\t')
+                }
+
+                if (e.which == 13) {
+                    ajax();
+                }
+            });
+
+            function insertAtCaret(areaId,text) {var txtarea = document.getElementById(areaId);var scrollPos = txtarea.scrollTop;var strPos = 0;var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ? "ff" : (document.selection ? "ie" : false ) );if (br == "ie") {txtarea.focus();var range = document.selection.createRange();range.moveStart ('character', -txtarea.value.length);strPos = range.text.length;} else if (br == "ff") strPos = txtarea.selectionStart;var front = (txtarea.value).substring(0,strPos);var back = (txtarea.value).substring(strPos,txtarea.value.length);txtarea.value=front+text+back;strPos = strPos + text.length;if (br == "ie") {txtarea.focus();var range = document.selection.createRange();range.moveStart ('character', -txtarea.value.length);range.moveStart ('character', strPos);range.moveEnd ('character', 0);range.select();} else if (br == "ff") {txtarea.selectionStart = strPos;txtarea.selectionEnd = strPos;txtarea.focus();}txtarea.scrollTop = scrollPos;}
+
+            function ajax()
+            {
+                if(window.XMLHttpRequest)
+                    var request = new XMLHttpRequest();
+                else if(window.ActiveXObject)
+                    var request = ActiveXObject("Microsoft.XMLHTTP");
+
+                request.open("POST", "{{settings.base_url}}/admin/markdown/ajax", true);
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                request.send('markdown=' + document.getElementById('markdown').value);
+
+                request.onreadystatechange = function()
+                {
+                    if(request.readyState == 4 && request.status == 200)
+                        document.getElementById('right').innerHTML = request.responseText;
+                }
+            }
+        });
+    </script>
+
+    <form method="post" action="{{settings.base_url}}/admin/posts/new">
+        <div class="row">
+            <div class="col-md-6" id='left'>
+                <input type="text" class="form-control" name="title" placeholder="Title" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6" id='left'>
+                <textarea class="form-control" rows="15" id='markdown' name="markdown"></textarea>
+                <br />
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Post it</button>
+            </div>
+            <div class="col-md-6" id='right'>
+                Loading...
+            </div>
+        </div>
+    </form>
+{% endblock %}

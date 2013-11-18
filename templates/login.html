@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+          <form class="form-signin" method="post" action="{{settings.base_url}}/admin/login">
+              <h2 class="form-signin-heading">Please sign in</h2>
+              {% if error is not empty %}
+                  <h3><span class="label label-danger">{{error}}</span></h3>
+              {% endif %}
+              <input type="text" name="form-username" class="form-control" placeholder="Username" required autofocus>
+              <input type="password" name="form-password" class="form-control" placeholder="Password" required>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          </form>
+    </div>
+{% endblock %}

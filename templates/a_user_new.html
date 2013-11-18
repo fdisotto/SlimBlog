@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+          <form class="form-signin" method="post" action="{{settings.base_url}}/admin/users/new">
+              <h2 class="form-signin-heading">Create new user</h2><br />
+
+              <label for="username" class="control-label">Username</label>
+              <input type="text" name="username" class="form-control" id="username" value="{{u.username}}" required><br />
+
+              <label for="email" class="control-label">Email</label>
+              <input type="email" name="email" class="form-control" id="email" value="{{u.email}}" required><br />
+
+              <label for="password" class="control-label">Password</label>
+              <input type="password" name="password" class="form-control" id="password" placeholder="New password" required><br />
+
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+          </form>
+    </div>
+{% endblock %}

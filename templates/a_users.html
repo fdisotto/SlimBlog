@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><span class="glyphicon glyphicon-th-large"></span></th>
+                <th>Username</th>
+                <th>Created at</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.created_at}}</td>
+                    <td><a href="{{settings.base_url}}/admin/users/edit/{{user.id}}">Edit</a> | <a href="{{settings.base_url}}/admin/users/delete/{{user.id}}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><a href="{{settings.base_url}}/post/{{post.id}}">{{post.title}}</a></h3>
+                    </div>
+                    <div class="panel-body">
+                        {{post.text|raw}}
+                    </div>
+                    <div class="panel-footer">
+                        <h6>Written by <strong>{{post.author}}</strong> on {{post.date}}.</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <ul class="pagination">
+                <li class="{% if page == 1 %}disabled{% endif %}"><a href="{{settings.base_url}}/{{page-1}}">&laquo;</a></li>
+                {% for i in 1..pages %}
+                      <li class="{% if page == i %}active{% endif %}"><a href="{{settings.base_url}}/{{i}}">{{i}}</a></li>
+                {% endfor %}
+                <li class="{% if page == pages %}disabled{% endif %}"><a href="{{settings.base_url}}/{{page+1}}">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

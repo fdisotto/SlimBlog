@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+          <form class="form-signin" method="post" action="{{settings.base_url}}/admin/settings/update">
+              <h2 class="form-signin-heading">Settings</h2><br />
+
+              <label for="title" class="control-label">Title</label>
+              <input type="text" name="title" class="form-control" id="title" value="{{settings.title}}" required><br />
+
+              <label for="base_url" class="control-label">Site URL</label>
+              <input type="text" name="base_url" class="form-control" id="base_url" value="{{settings.base_url}}" required><br />
+
+              <label for="post_per_page" class="control-label">Post per page</label>
+              <input type="text" name="post_per_page" class="form-control" id="post_per_page" value="{{settings.post_per_page}}" required><br />
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+          </form>
+    </div>
+{% endblock %}

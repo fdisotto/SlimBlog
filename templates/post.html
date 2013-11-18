@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{post.title}}</h3>
+            </div>
+            <div class="panel-body">
+                {{post.text|raw}}
+            </div>
+            <div class="panel-footer">
+                <h6>Written by <strong>{{post.author}}</strong> on {{post.date}}.</h6>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

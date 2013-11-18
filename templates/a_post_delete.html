@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <form class="form-signin" method="post" action="{{settings.base_url}}/admin/posts/delete/{{post_id}}">
+            <h2>Deleting post with id {{post_id}}</h2>
+            <h3>Are you sure?</h3>
+            <input type="hidden" name="_METHOD" value="DELETE"/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">DELETE</button>
+        </form>
+    <div>
+{% endblock %}

@@ -10,6 +10,7 @@ Require
 
 Install
 ---
+* Run 'composer install' in root directory
 * Edit slimblog.sql file, in settings table change base_url from http://localhost/slimblog/public/ to your url installation path
 * Edit index.php file under public folder at 31 line with your database login data
 * Login with username:password

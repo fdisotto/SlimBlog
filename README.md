@@ -1,7 +1,7 @@
 SlimBlog
 =====
 
-Require
+Dependencies
 ---
 * [Slim Framework](http://slimframework.com)
 * [Eloquent](http://laravel.com/docs/eloquent)
@@ -25,7 +25,6 @@ Features
 ToDo List
 ---
 * Error manager
-* Validate inputs
 * Comments system
 * Template system
 * I18n support

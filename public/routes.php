@@ -98,12 +98,27 @@ $app->get('/admin/', $authenticate($app, $settings), function() use ($app, $caps
 });
 
 $app->get('/admin/posts/new/', $authenticate($app, $settings), function() use ($app) {
-    $app->render('a_post_new.html');
+    $flash = $app->view()->getData('flash');
+    $error = '';
+    if (isset($flash['error'])) {
+        $error = $flash['error'];
+    }
+    $app->render('a_post_new.html', array('error' => $error));
 });
 
-$app->post('/admin/posts/new', $authenticate($app, $settings), function() use ($app, $request) {
+$app->post('/admin/posts/new', $authenticate($app, $settings), function() use ($app, $request, $settings) {
     $title = $request->post('title');
     $text = $request->post('markdown');
+
+    if ($title == "") {
+        $app->flash('error', 'Please insert title.');
+        $app->redirect($settings->base_url . '/admin/posts/new');
+    }
+    if ($text == "") {
+        $app->flash('error', 'Please insert text.');
+        $app->redirect($settings->base_url . '/admin/posts/new');
+    }
+
     $date = time();
     $author = Users::get_id($_SESSION['user']);
 
@@ -122,11 +137,30 @@ $app->get('/admin/posts/edit/:id', $authenticate($app, $settings), function($id)
     $title = $post->title;
     $text = $post->text;
     $postId = $id;
-    $app->render('a_post_edit.html', array('id' => $postId, 'title' => $title, 'text' => $text));
+
+    $flash = $app->view()->getData('flash');
+    $error = '';
+    if (isset($flash['error'])) {
+        $error = $flash['error'];
+    }
+
+    $app->render('a_post_edit.html', array('id' => $postId, 'title' => $title, 'text' => $text, 'error' => $error));
 })->conditions(array('id' => '\d+'));
 
-$app->post('/admin/posts/edit/:id', $authenticate($app, $settings), function($id) use ($app, $request) {
-    Posts::where('id', '=', $id)->update(array('title' => $request->post('title'), 'text' => $request->post('markdown')));
+$app->post('/admin/posts/edit/:id', $authenticate($app, $settings), function($id) use ($app, $request, $settings) {
+    $title = $request->post('title');
+    $text = $request->post('markdown');
+
+    if ($title == "") {
+        $app->flash('error', 'Please insert title.');
+        $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
+    }
+    if ($text == "") {
+        $app->flash('error', 'Please insert text.');
+        $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
+    }
+
+    Posts::where('id', '=', $id)->update(array('title' => $title, 'text' => $text));
     $app->render('success.html');
 })->conditions(array('id' => '\d+'));
 
@@ -140,13 +174,31 @@ $app->delete('/admin/posts/delete/:id', $authenticate($app, $settings), function
 })->conditions(array('id' => '\d+'));
 
 $app->get('/admin/settings/', $authenticate($app, $settings), function() use ($app) {
-    $app->render('a_settings.html');
+    $flash = $app->view()->getData('flash');
+    $error = '';
+    if (isset($flash['error'])) {
+        $error = $flash['error'];
+    }
+    $app->render('a_settings.html', array('error' => $error));
 });
 
-$app->post('/admin/settings/update', function() use ($app, $request) {
+$app->post('/admin/settings/update', function() use ($app, $request, $settings) {
     $title = $request->post('title');
     $base_url = $request->post('base_url');
     $post_per_page = $request->post('post_per_page');
+
+    if($title == "") {
+        $app->flash('error', 'Please insert title.');
+        $app->redirect($settings->base_url . '/admin/settings');
+    }
+    if($base_url == "" OR !filter_var($base_url, FILTER_VALIDATE_URL)) {
+        $app->flash('error', 'Please check site url.');
+        $app->redirect($settings->base_url . '/admin/settings');
+    }
+    if($post_per_page == "" OR !is_integer($post_per_page)) {
+        $app->flash('error', 'Please check post per page.');
+        $app->redirect($settings->base_url . '/admin/settings');
+    }
 
     Settings::where('id', '=', 1)->update(array('title' => $title, 'base_url' => $base_url, 'post_per_page' => $post_per_page));
     $app->render('success.html');
@@ -158,14 +210,29 @@ $app->get('/admin/users/', $authenticate($app, $settings), function() use ($app,
 });
 
 $app->get('/admin/users/edit/:id', $authenticate($app, $settings), function($id) use ($app) {
+    $flash = $app->view()->getData('flash');
+    $error = '';
+    if (isset($flash['error'])) {
+        $error = $flash['error'];
+    }
+
     $u = Users::where('id', '=', $id)->first();
-    $app->render('a_user_edit.html', array('u' => $u));
+    $app->render('a_user_edit.html', array('u' => $u, 'error' => $error));
 })->conditions(array('id' => '\d+'));
 
-$app->post('/admin/users/edit/:id', $authenticate($app, $settings), function($id) use ($app, $request) {
+$app->post('/admin/users/edit/:id', $authenticate($app, $settings), function($id) use ($app, $request, $settings) {
     $username = $request->post('username');
     $password = hash('sha512', $request->post('password'));
     $email = $request->post('email');
+
+    if($username == "") {
+        $app->flash('error', 'Please check username.');
+        $app->redirect($settings->base_url . '/admin/users/new');
+    }
+    if($email == "" OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $app->flash('error', 'Please check email.');
+        $app->redirect($settings->base_url . '/admin/users/new');
+    }
 
     Users::where('id', '=', $id)->update(array('username' => $username, 'password' => $password, 'email' => $email));
     $app->render('success.html');
@@ -181,14 +248,32 @@ $app->delete('/admin/users/delete/:id', $authenticate($app, $settings), function
 })->conditions(array('id' => '\d+'));
 
 $app->get('/admin/users/new/', $authenticate($app, $settings), function() use ($app) {
-    $app->render('a_user_new.html');
+    $flash = $app->view()->getData('flash');
+    $error = '';
+    if (isset($flash['error'])) {
+        $error = $flash['error'];
+    }
+    $app->render('a_user_new.html', array('error' => $error));
 });
 
-$app->post('/admin/users/new', $authenticate($app, $settings), function() use ($app, $request) {
+$app->post('/admin/users/new', $authenticate($app, $settings), function() use ($app, $request, $settings) {
     $username = $request->post('username');
     $password = hash('sha512', $request->post('password'));
     $email = $request->post('email');
     $created_at = date('Y-m-d H:i:s');
+
+    if($username == "") {
+        $app->flash('error', 'Please check username.');
+        $app->redirect($settings->base_url . '/admin/users/new');
+    }
+    if($password == "") {
+        $app->flash('error', 'Please check password.');
+        $app->redirect($settings->base_url . '/admin/users/new');
+    }
+    if($email == "" OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $app->flash('error', 'Please check email.');
+        $app->redirect($settings->base_url . '/admin/users/new');
+    }
 
     Users::insert(array('username' => $username, 'password' => $password, 'email' => $email, 'created_at' => $created_at));
     $app->render('success.html');

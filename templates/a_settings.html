@@ -5,6 +5,10 @@
           <form class="form-signin" method="post" action="{{settings.base_url}}/admin/settings/update">
               <h2 class="form-signin-heading">Settings</h2><br />
 
+              {% if error is not empty %}
+                  <h3 class="text-center"><span class="label label-danger">{{error}}</span></h3>
+              {% endif %}
+
               <label for="title" class="control-label">Title</label>
               <input type="text" name="title" class="form-control" id="title" value="{{settings.title}}" required><br />
 

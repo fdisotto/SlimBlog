@@ -5,6 +5,10 @@
           <form class="form-signin" method="post" action="{{settings.base_url}}/admin/users/edit/{{u.id}}">
               <h2 class="form-signin-heading">Edit {{u.username}} profile</h2><br />
 
+              {% if error is not empty %}
+                  <h3 class="text-center"><span class="label label-danger">{{error}}</span></h3>
+              {% endif %}
+
               <label for="username" class="control-label">Username</label>
               <input type="text" name="username" class="form-control" id="username" value="{{u.username}}" required><br />
 

@@ -12,7 +12,14 @@
                         {{post.text|raw}}
                     </div>
                     <div class="panel-footer">
-                        <h6>Written by <strong>{{post.author}}</strong> on {{post.date}}.</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Written by <strong>{{post.author}}</strong> on {{post.date}}.</h6>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <h6><a href="{{settings.base_url}}/post/{{post.id}}#comments">Comments(<strong>{{post.count}}</strong>)</a></h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -29,15 +29,15 @@ $app->hook('slim.before.dispatch', function() use ($app, $settings) {
 
 $app->get('/(:page)', function($page = 1) use ($app, $settings, $request, $markdownParser, $capsule) {
     $posts = $capsule->table('posts')->orderBy('creation', 'desc')->skip($settings->post_per_page * ($page - 1))->take($settings->post_per_page)->get();
-    $arr = array();
+    $arr = array(); //Posts
     foreach ($posts as $post) {
         $post['author'] = Users::get_author($post['user_id']);
         $post['date'] = date('d-m-Y H:i', $post['creation']);
         $post['url'] = $request->getUrl() . $request->getPath() . 'post/' . $post['id'];
         $post['text'] = $markdownParser->transformMarkdown($post['text']);
+        $post['count'] = Posts::find($post['id'])->comments->count();
         $arr[] = $post;
     }
-
     $p = $capsule->table('posts')->count();
 
     $pages = ceil($p / $settings->post_per_page);
@@ -47,13 +47,53 @@ $app->get('/(:page)', function($page = 1) use ($app, $settings, $request, $markd
 
 $app->get('/post/:id', function($id) use ($app, $request, $markdownParser) {
     if ($post = Posts::find($id)) {
+        $flash = $app->view()->getData('flash');
+        $error = '';
+        if (isset($flash['error'])) {
+            $error = $flash['error'];
+        }
+
         $post->author = Users::get_author($post->user_id);
         $post->date = date('d-m-Y H:i', $post->creation);
         $post->text = $markdownParser->transformMarkdown($post->text);
+        $post->count = Posts::find($post->id)->comments->count();
 
-        $app->render('post.html', array('post' => $post));
+        $comments = Posts::find($post->id)->comments;
+
+        $redirect = $request->getUrl() . $request->getPath();
+
+        $app->render('post.html', array('post' => $post, 'error' => $error, 'comments' => $comments, 'redirect' => $redirect));
     }
 })->conditions(array('page' => '\d+'));
+
+$app->post('/post/comment/new', function() use($app, $request, $settings) {
+    $username = $request->post('username');
+    $url = filter_var($request->post('url'), FILTER_SANITIZE_URL);
+    $email = $request->post('email');
+    $text = filter_var($request->post('text'), FILTER_SANITIZE_STRING);
+    $post_id = $request->post('post_id');
+    $redirect = $request->post('redirect');
+
+    if($username == "") {
+        $app->flash('error', 'Please check username.');
+        $app->redirect($settings->base_url . '/post/' . $post_id);
+    }
+    if($url == "") {
+        $app->flash('error', 'Please check url.');
+        $app->redirect($settings->base_url . '/post/' . $post_id);
+    }
+    if($email == "" OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $app->flash('error', 'Please check email.');
+        $app->redirect($settings->base_url . '/post/' . $post_id);
+    }
+    if($text == "") {
+        $app->flash('error', 'Please check text.');
+        $app->redirect($settings->base_url . '/post/' . $post_id);
+    }
+
+    Comments::insert(array('username' => $username, 'email' => $email, 'text' => $text, 'posts_id' => $post_id));
+    $app->render('success.html', array('redirect' => $redirect));
+});
 
 $app->get('/admin/login/', $isLogged($app, $settings), function() use ($app) {
     $flash = $app->view()->getData('flash');
@@ -103,12 +143,14 @@ $app->get('/admin/posts/new/', $authenticate($app, $settings), function() use ($
     if (isset($flash['error'])) {
         $error = $flash['error'];
     }
+
     $app->render('a_post_new.html', array('error' => $error));
 });
 
 $app->post('/admin/posts/new', $authenticate($app, $settings), function() use ($app, $request, $settings) {
     $title = $request->post('title');
     $text = $request->post('markdown');
+    $redirect = $request->post('redirect');
 
     if ($title == "") {
         $app->flash('error', 'Please insert title.');
@@ -123,7 +165,7 @@ $app->post('/admin/posts/new', $authenticate($app, $settings), function() use ($
     $author = Users::get_id($_SESSION['user']);
 
     Posts::insert(array('title' => $title, 'creation' => $date, 'text' => $text, 'user_id' => $author));
-    $app->render('success.html');
+    $app->render('success.html', array('redirect' => $redirect));
 });
 
 $app->post('/admin/markdown/ajax', $authenticate($app, $settings), function() use ($app, $request, $markdownParser) {
@@ -160,8 +202,10 @@ $app->post('/admin/posts/edit/:id', $authenticate($app, $settings), function($id
         $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
     }
 
+    $redirect = $settings->base_url . '/admin';
+
     Posts::where('id', '=', $id)->update(array('title' => $title, 'text' => $text));
-    $app->render('success.html');
+    $app->render('success.html', array('redirect' => $redirect));
 })->conditions(array('id' => '\d+'));
 
 $app->get('/admin/posts/delete/:id', $authenticate($app, $settings), function($id) use ($app) {
@@ -170,7 +214,8 @@ $app->get('/admin/posts/delete/:id', $authenticate($app, $settings), function($i
 
 $app->delete('/admin/posts/delete/:id', $authenticate($app, $settings), function($id) use ($app) {
     Posts::destroy($id);
-    $app->render('success.html');
+    $redirect = $settings->base_url . '/admin';
+    $app->render('success.html', array('redirect' => $redirect));
 })->conditions(array('id' => '\d+'));
 
 $app->get('/admin/settings/', $authenticate($app, $settings), function() use ($app) {
@@ -200,8 +245,10 @@ $app->post('/admin/settings/update', function() use ($app, $request, $settings) 
         $app->redirect($settings->base_url . '/admin/settings');
     }
 
+    $redirect = $settings->base_url . '/admin/settings';
+
     Settings::where('id', '=', 1)->update(array('title' => $title, 'base_url' => $base_url, 'post_per_page' => $post_per_page));
-    $app->render('success.html');
+    $app->render('success.html', array('redirect' => $redirect));
 });
 
 $app->get('/admin/users/', $authenticate($app, $settings), function() use ($app, $capsule) {
@@ -234,8 +281,10 @@ $app->post('/admin/users/edit/:id', $authenticate($app, $settings), function($id
         $app->redirect($settings->base_url . '/admin/users/new');
     }
 
+    $redirect = $settings->base_url . '/admin/users';
+
     Users::where('id', '=', $id)->update(array('username' => $username, 'password' => $password, 'email' => $email));
-    $app->render('success.html');
+    $app->render('success.html', array('redirect' => $redirect));
 })->conditions(array('id' => '\d+'));
 
 $app->get('/admin/users/delete/:id', $authenticate($app, $settings), function($id) use ($app) {
@@ -244,7 +293,8 @@ $app->get('/admin/users/delete/:id', $authenticate($app, $settings), function($i
 
 $app->delete('/admin/users/delete/:id', $authenticate($app, $settings), function($id) use ($app) {
     Users::destroy($id);
-    $app->render('success.html');
+    $redirect = $settings->base_url . '/admin/users';
+    $app->render('success.html', array('redirect' => $redirect));
 })->conditions(array('id' => '\d+'));
 
 $app->get('/admin/users/new/', $authenticate($app, $settings), function() use ($app) {
@@ -275,6 +325,8 @@ $app->post('/admin/users/new', $authenticate($app, $settings), function() use ($
         $app->redirect($settings->base_url . '/admin/users/new');
     }
 
+    $redirect = $settings->base_url . '/admin/users';
+
     Users::insert(array('username' => $username, 'password' => $password, 'email' => $email, 'created_at' => $created_at));
-    $app->render('success.html');
+    $app->render('success.html', array('redirect' => $redirect));
 });

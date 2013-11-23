@@ -2,7 +2,7 @@
 require_once "../vendor/autoload.php";
 
 $app = new \Slim\Slim(array(
-    "view" => new \Slim\Extras\Views\Twig(),
+    "view" => new \Slim\Views\Twig(),
     "templates.path" => "../templates/",
     "mode" => "development",
 ));

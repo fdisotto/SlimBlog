@@ -33,10 +33,12 @@ $capsule->addConnection(array(
 $capsule->bootEloquent();
 $capsule->setAsGlobal();
 
-$request = $app->request;
+$app->db = $capsule;
 
 $settings = Settings::where('id', '=', 1)->first();
 
 use dflydev\markdown\MarkdownParser;
 
-$markdownParser = new MarkdownParser();
+$app->container->singleton('markdown', function () {
+    return new MarkdownParser();
+});

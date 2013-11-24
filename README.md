@@ -19,12 +19,13 @@ Install
 Features
 ---
 * Create new post with live markdown editor
-* Edit/Delete posts/users
+* Edit/Delete posts and manage users
 * Manage settings
 
 ToDo List
 ---
 * Error manager
-* Comments system
+* Different user level (Super admin, writers, other)
 * Template system
+* Installation more user friendly
 * I18n support

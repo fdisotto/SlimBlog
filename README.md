@@ -29,3 +29,10 @@ ToDo List
 * Template system
 * Installation more user friendly
 * I18n support
+
+Author
+---
+**Fabio Di Sotto**
+* [Github](https://github.com/fdisotto)
+* [Twitter](https://twitter.com/fdisotto)
+* [Facebook](https://facebook.com/fdisotto)

@@ -91,7 +91,7 @@ $app->post('/post/comment/new', function() use($app, $request, $settings) {
         $app->redirect($settings->base_url . '/post/' . $post_id);
     }
 
-    Comments::insert(array('username' => $username, 'email' => $email, 'text' => $text, 'posts_id' => $post_id));
+    Comments::insert(array('username' => $username, 'url' => $url, 'email' => $email, 'text' => $text, 'posts_id' => $post_id));
     $app->render('success.html', array('redirect' => $redirect));
 });
 

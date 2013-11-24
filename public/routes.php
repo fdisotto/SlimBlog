@@ -28,7 +28,7 @@ $app->hook('slim.before.dispatch', function() use ($app, $settings) {
 });
 
 $app->get('/(:page)', function($page = 1) use ($app, $settings) {
-    $posts = $app->db->table('posts')->orderBy('creation', 'desc')->skip($settings->post_per_page * ($page - 1))->take($settings->post_per_page)->get();
+    $posts = Posts::orderBy('creation', 'desc')->skip($settings->post_per_page * ($page - 1))->take($settings->post_per_page)->get();
     $arr = array(); //Posts
     foreach ($posts as $post) {
         $post['author'] = Users::get_author($post['user_id']);
@@ -38,7 +38,7 @@ $app->get('/(:page)', function($page = 1) use ($app, $settings) {
         $post['count'] = Posts::find($post['id'])->comments->count();
         $arr[] = $post;
     }
-    $p = $app->db->table('posts')->count();
+    $p = Posts::count();
 
     $pages = ceil($p / $settings->post_per_page);
 
@@ -127,7 +127,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
     });
 
     $app->get('/', $authenticate($app, $settings), function() use ($app) {
-        $posts = $app->db->table('posts')->orderBy('creation', 'desc')->get();
+        $posts = Posts::orderBy('creation', 'desc')->get();
         $arr = array();
         foreach ($posts as $post) {
             $post['author'] = Users::get_author($post['user_id']);
@@ -253,7 +253,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
     });
 
     $app->get('/users/', $authenticate($app, $settings), function() use ($app) {
-        $users = $app->db->table('users')->orderBy('created_at', 'asc')->get();
+        $users = Users::orderBy('created_at', 'asc')->get();
         $app->render('a_users.html', array('users' => $users));
     });
 

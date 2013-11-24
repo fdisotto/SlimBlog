@@ -5,7 +5,7 @@
         "slim/slim": "2.*",
         "slim/views": "0.1.*",
         "twig/twig": "1.*",
-        "dhorrigan/capsule": "*",
+        "illuminate/database": "v4.0.9",
         "dflydev/markdown": "1.0.*"
     },
     "autoload": {

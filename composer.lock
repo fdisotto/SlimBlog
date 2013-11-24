@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f945c1c0062e78822d12dd29b817fa91",
+    "hash": "60db7e8588a4cd7a715d6ec0236b74fb",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -63,46 +63,6 @@
                 "markdown"
             ],
             "time": "2013-09-23 12:00:18"
-        },
-        {
-            "name": "dhorrigan/capsule",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/philsturgeon/capsule.git",
-                "reference": "3d6ffee4e33e7af8d9e28374e47797e1f2fabc89"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/philsturgeon/capsule/zipball/3d6ffee4e33e7af8d9e28374e47797e1f2fabc89",
-                "reference": "3d6ffee4e33e7af8d9e28374e47797e1f2fabc89",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "4.0.*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Capsule": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Dan Horrigan",
-                    "email": "dan@dhorrigan.com",
-                    "homepage": "http://dhorrigan.com",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "A simple wrapper class for the Laravel Database package.  This is only to be used outside of a Laravel application.",
-            "keywords": [
-                "database",
-                "laravel"
-            ],
-            "time": "2013-01-31 18:52:39"
         },
         {
             "name": "illuminate/container",
@@ -314,16 +274,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "64c0192173e78ad405411f16d3c1a699386d882c"
+                "reference": "b0450b539d1567b2acee6467b6b323a8547b5559"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/64c0192173e78ad405411f16d3c1a699386d882c",
-                "reference": "64c0192173e78ad405411f16d3c1a699386d882c",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b0450b539d1567b2acee6467b6b323a8547b5559",
+                "reference": "b0450b539d1567b2acee6467b6b323a8547b5559",
                 "shasum": ""
             },
             "require": {
@@ -356,58 +316,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2013-11-21 21:09:53"
-        },
-        {
-            "name": "slim/extras",
-            "version": "2.0.3",
-            "target-dir": "Slim/Extras",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/codeguy/Slim-Extras.git",
-                "reference": "a022ed23dae94e164000acd891e3394d903f9623"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/codeguy/Slim-Extras/zipball/a022ed23dae94e164000acd891e3394d903f9623",
-                "reference": "a022ed23dae94e164000acd891e3394d903f9623",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "slim/slim": ">=2.0.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Twig_Extensions_": "Views/Extension/",
-                    "Slim\\Extras": "."
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andrew Smith",
-                    "email": "a.smith@silentworks.co.uk",
-                    "homepage": "http://thoughts.silentworks.co.uk/"
-                },
-                {
-                    "name": "Josh Lockhart",
-                    "email": "info@joshlockhart.com",
-                    "homepage": "http://www.joshlockhart.com/"
-                }
-            ],
-            "description": "Extras package for the Slim Framework",
-            "homepage": "http://github.com/codeguy/Slim-Extras",
-            "keywords": [
-                "extensions",
-                "middleware",
-                "templating"
-            ],
-            "time": "2013-01-07 17:56:10"
+            "time": "2013-11-23 15:22:05"
         },
         {
             "name": "slim/slim",

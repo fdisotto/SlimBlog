@@ -36,3 +36,7 @@ Author
 * [Github](https://github.com/fdisotto)
 * [Twitter](https://twitter.com/fdisotto)
 * [Facebook](https://facebook.com/fdisotto)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fdisotto/slimblog/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

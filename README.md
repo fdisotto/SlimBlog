@@ -37,6 +37,12 @@ Author
 * [Twitter](https://twitter.com/fdisotto)
 * [Facebook](https://facebook.com/fdisotto)
 
+Contributors
+---
+**Andrew Smith**
+* [Github](https://github.com/silentworks)
+* [Wesite](http://silentworks.co.uk/)
+
+
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fdisotto/slimblog/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

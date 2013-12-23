@@ -25,7 +25,7 @@ $capsule->addConnection(array(
     'host' => 'localhost',
     'database' => 'slimblog',
     'username' => 'root',
-    'password' => '090190',
+    'password' => '',
     'prefix' => '',
     'charset' => 'utf8',
     'collation' => 'utf8_general_ci',
@@ -35,7 +35,17 @@ $capsule->setAsGlobal();
 
 $app->db = $capsule;
 
+/**
+ * Extract settings from db
+ */
 $settings = Settings::where('id', '=', 1)->first();
+
+/**
+ * Set template directory
+ */
+$app->config(array(
+    "templates.path" => TEMPLATEDIR . $settings->template . DS,
+));
 
 use dflydev\markdown\MarkdownParser;
 

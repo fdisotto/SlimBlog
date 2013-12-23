@@ -118,13 +118,21 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $flash = $app->view()->getData('flash');
         $error = isset($flash['error']) ? $flash['error'] : '';
 
-        $app->render('a_settings.html', array('error' => $error));
+        $paths = glob(TEMPLATEDIR . '*' , GLOB_ONLYDIR);
+        $dirs = array();
+        foreach($paths as $path) {
+            $d = explode(DS, $path);
+            $dirs[] = end($d);
+        }
+
+        $app->render('a_settings.html', array('error' => $error, 'dirs' => $dirs));
     });
 
     $app->post('/settings/update', function() use ($app, $settings) {
         $title = $app->request->post('title');
         $base_url = $app->request->post('base_url');
-        $post_per_page = $app->request->post('post_per_page');
+        $post_per_page = (int)$app->request->post('post_per_page');
+        $template = $app->request->post('template');
 
         if($title == "") {
             $app->flash('error', 'Please insert title.');
@@ -134,14 +142,18 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
             $app->flash('error', 'Please check site url.');
             $app->redirect($settings->base_url . '/admin/settings');
         }
-        if($post_per_page == "" OR !is_integer($post_per_page)) {
+        if($post_per_page == '') {
             $app->flash('error', 'Please check post per page.');
+            $app->redirect($settings->base_url . '/admin/settings');
+        }
+        if($template == '') {
+            $app->flash('error', 'Please select template.');
             $app->redirect($settings->base_url . '/admin/settings');
         }
 
         $redirect = $settings->base_url . '/admin/settings';
 
-        Settings::where('id', '=', 1)->update(array('title' => $title, 'base_url' => $base_url, 'post_per_page' => $post_per_page));
+        Settings::where('id', '=', 1)->update(array('title' => $title, 'base_url' => $base_url, 'template' => $template, 'post_per_page' => $post_per_page));
         $app->render('success.html', array('redirect' => $redirect));
     });
 

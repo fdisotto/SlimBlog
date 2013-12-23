@@ -11,7 +11,8 @@ Dependencies
 Install
 ---
 * Run 'php composer.phar install' in root directory
-* Edit slimblog.sql file (in root directory), in settings table change base_url from http://localhost/slimblog/public/ to your url installation path
+* Edit slimblog.sql file (in SQL directory), in settings table change base_url from http://localhost/slimblog/public/ to your url installation path
+* Run .sql files located in SQL/updates
 * Edit index.php file under public folder at 31 line with your database login data
 * Login with username:password
 * Enjoy
@@ -21,12 +22,13 @@ Features
 * Create new post with live markdown editor
 * Edit/Delete posts and manage users
 * Manage settings
+* Template system
 
 ToDo List
 ---
 * Error manager
 * Different user level (Super admin, writers, other)
-* Template system
+* ~~Template system~~
 * Installation more user friendly
 * I18n support
 
@@ -41,7 +43,7 @@ Contributors
 ---
 **Andrew Smith**
 * [Github](https://github.com/silentworks)
-* [Wesite](http://silentworks.co.uk/)
+* [Website](http://silentworks.co.uk/)
 
 
 

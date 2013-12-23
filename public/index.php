@@ -6,13 +6,13 @@ date_default_timezone_set('Europe/Rome');
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", realpath(dirname(__DIR__)) . DS);
 define("ROUTEDIR", ROOT . "routes" . DS);
+define("TEMPLATEDIR", ROOT . "templates" . DS);
 
 /**
  * Create app
  */
 $app = new \Slim\Slim(array(
     "view" => new \Slim\Views\Twig(),
-    "templates.path" => "../templates/",
     "mode" => "development",
 ));
 

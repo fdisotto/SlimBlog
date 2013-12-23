@@ -2,6 +2,9 @@ Changelog
 =====
 
 ####23-12-2013
+* Added template system
+
+####23-12-2013
 * Fixed some stuff
 * Added routes directory
 

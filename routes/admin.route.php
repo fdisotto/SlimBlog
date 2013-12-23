@@ -1,107 +1,8 @@
 <?php
-//Check if user is logged
-$authenticate = function($app, $settings) {
-    return function() use ($app, $settings) {
-        if (!isset($_SESSION['user'])) {
-            $app->flash('error', 'Login required');
-            $app->redirect($settings->base_url . '/admin/login');
-        }
-    };
-};
-
-$isLogged = function($app, $settings) {
-    return function() use ($app, $settings) {
-        if (isset($_SESSION['user'])) {
-            $app->redirect($settings->base_url . '/admin');
-        }
-    };
-};
-
-$app->hook('slim.before.dispatch', function() use ($app, $settings) {
-    $user = null;
-    if (isset($_SESSION['user'])) {
-        $user = $_SESSION['user'];
-    }
-    $app->view()->setData('user', $user);
-
-    $app->view()->setData('settings', $settings);
-});
-
-$app->get('/(:page)', function($page = 1) use ($app, $settings) {
-    $posts = Posts::orderBy('creation', 'desc')->skip($settings->post_per_page * ($page - 1))->take($settings->post_per_page)->get();
-    $arr = array(); //Posts
-    foreach ($posts as $post) {
-        $post['author'] = Users::get_author($post['user_id']);
-        $post['date'] = date('d-m-Y H:i', $post['creation']);
-        $post['url'] = $app->request->getUrl() . $app->request->getPath() . 'post/' . $post['id'];
-        $post['text'] = $app->markdown->transformMarkdown($post['text']);
-        $post['count'] = Posts::find($post['id'])->comments->count();
-        $arr[] = $post;
-    }
-    $p = Posts::count();
-
-    $pages = ceil($p / $settings->post_per_page);
-
-    $app->render('posts.html', array('posts' => $arr, 'pages' => $pages, 'page' => $page));
-})->conditions(array('page' => '\d+'));
-
-$app->get('/post/:id', function($id) use ($app) {
-    if ($post = Posts::find($id)) {
-        $flash = $app->view()->getData('flash');
-        $error = '';
-        if (isset($flash['error'])) {
-            $error = $flash['error'];
-        }
-
-        $post->author = Users::get_author($post->user_id);
-        $post->date = date('d-m-Y H:i', $post->creation);
-        $post->text = $app->markdown->transformMarkdown($post->text);
-        $post->count = Posts::find($post->id)->comments->count();
-
-        $comments = Posts::find($post->id)->comments;
-
-        $redirect = $app->request->getUrl() . $app->request->getPath();
-
-        $app->render('post.html', array('post' => $post, 'error' => $error, 'comments' => $comments, 'redirect' => $redirect));
-    }
-})->conditions(array('page' => '\d+'));
-
-$app->post('/post/comment/new', function() use($app, $settings) {
-    $username = $app->request->post('username');
-    $url = filter_var($app->request->post('url'), FILTER_SANITIZE_URL);
-    $email = $app->request->post('email');
-    $text = filter_var($app->request->post('text'), FILTER_SANITIZE_STRING);
-    $post_id = $app->request->post('post_id');
-    $redirect = $app->request->post('redirect');
-
-    if($username == "") {
-        $app->flash('error', 'Please check username.');
-        $app->redirect($settings->base_url . '/post/' . $post_id);
-    }
-    if($url == "") {
-        $app->flash('error', 'Please check url.');
-        $app->redirect($settings->base_url . '/post/' . $post_id);
-    }
-    if($email == "" OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $app->flash('error', 'Please check email.');
-        $app->redirect($settings->base_url . '/post/' . $post_id);
-    }
-    if($text == "") {
-        $app->flash('error', 'Please check text.');
-        $app->redirect($settings->base_url . '/post/' . $post_id);
-    }
-
-    Comments::insert(array('username' => $username, 'url' => $url, 'email' => $email, 'text' => $text, 'posts_id' => $post_id));
-    $app->render('success.html', array('redirect' => $redirect));
-});
-
 $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate) {
     $app->get('/login/', $isLogged($app, $settings), function() use ($app) {
         $flash = $app->view()->getData('flash');
-        $error = '';
-        if (isset($flash['error'])) {
-            $error = $flash['error'];
-        }
+        $error = isset($flash['error']) ? $flash['error'] : '';
 
         $app->render('login.html', array('error' => $error));
     });
@@ -140,10 +41,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
     $app->get('/posts/new/', $authenticate($app, $settings), function() use ($app) {
         $flash = $app->view()->getData('flash');
-        $error = '';
-        if (isset($flash['error'])) {
-            $error = $flash['error'];
-        }
+        $error = isset($flash['error']) ? $flash['error'] : '';
 
         $app->render('a_post_new.html', array('error' => $error));
     });
@@ -182,10 +80,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $postId = $id;
 
         $flash = $app->view()->getData('flash');
-        $error = '';
-        if (isset($flash['error'])) {
-            $error = $flash['error'];
-        }
+        $error = isset($flash['error']) ? $flash['error'] : '';
 
         $app->render('a_post_edit.html', array('id' => $postId, 'title' => $title, 'text' => $text, 'error' => $error));
     })->conditions(array('id' => '\d+'));
@@ -221,10 +116,8 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
     $app->get('/settings/', $authenticate($app, $settings), function() use ($app) {
         $flash = $app->view()->getData('flash');
-        $error = '';
-        if (isset($flash['error'])) {
-            $error = $flash['error'];
-        }
+        $error = isset($flash['error']) ? $flash['error'] : '';
+
         $app->render('a_settings.html', array('error' => $error));
     });
 
@@ -259,10 +152,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
     $app->get('/users/edit/:id', $authenticate($app, $settings), function($id) use ($app) {
         $flash = $app->view()->getData('flash');
-        $error = '';
-        if (isset($flash['error'])) {
-            $error = $flash['error'];
-        }
+        $error = isset($flash['error']) ? $flash['error'] : '';
 
         $u = Users::where('id', '=', $id)->first();
         $app->render('a_user_edit.html', array('u' => $u, 'error' => $error));
@@ -300,10 +190,8 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
     $app->get('/users/new/', $authenticate($app, $settings), function() use ($app) {
         $flash = $app->view()->getData('flash');
-        $error = '';
-        if (isset($flash['error'])) {
-            $error = $flash['error'];
-        }
+        $error = isset($flash['error']) ? $flash['error'] : '';
+
         $app->render('a_user_new.html', array('error' => $error));
     });
 

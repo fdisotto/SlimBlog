@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "60db7e8588a4cd7a715d6ec0236b74fb",
+    "hash": "ad178904caaaf2d06c67e9a7e14697f1",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -66,17 +66,17 @@
         },
         {
             "name": "illuminate/container",
-            "version": "v4.0.9",
+            "version": "v4.0.10",
             "target-dir": "Illuminate/Container",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "ee86c892f98e7509515149cc71bc8a74abc0c5dc"
+                "reference": "d8be813ca31124d5484365ea0d567411c1555e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/ee86c892f98e7509515149cc71bc8a74abc0c5dc",
-                "reference": "ee86c892f98e7509515149cc71bc8a74abc0c5dc",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/d8be813ca31124d5484365ea0d567411c1555e0c",
+                "reference": "d8be813ca31124d5484365ea0d567411c1555e0c",
                 "shasum": ""
             },
             "require": {
@@ -108,7 +108,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-02 21:36:40"
+            "time": "2013-10-31 16:05:50"
         },
         {
             "name": "illuminate/database",
@@ -174,7 +174,7 @@
         },
         {
             "name": "illuminate/events",
-            "version": "v4.0.9",
+            "version": "v4.0.10",
             "target-dir": "Illuminate/Events",
             "source": {
                 "type": "git",
@@ -223,17 +223,17 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v4.0.9",
+            "version": "v4.0.10",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "bec895ef2331ff2f4afbbe48d1ea3d48c3bd8a9f"
+                "reference": "24ac5601b3f6781c8b54a12ed5e4ddb7f34d7953"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/bec895ef2331ff2f4afbbe48d1ea3d48c3bd8a9f",
-                "reference": "bec895ef2331ff2f4afbbe48d1ea3d48c3bd8a9f",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/24ac5601b3f6781c8b54a12ed5e4ddb7f34d7953",
+                "reference": "24ac5601b3f6781c8b54a12ed5e4ddb7f34d7953",
                 "shasum": ""
             },
             "require": {
@@ -270,20 +270,20 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-03 18:37:29"
+            "time": "2013-11-20 14:44:26"
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "b0450b539d1567b2acee6467b6b323a8547b5559"
+                "reference": "03ede52a1f360441b5826cb8a798e0d0a919731f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b0450b539d1567b2acee6467b6b323a8547b5559",
-                "reference": "b0450b539d1567b2acee6467b6b323a8547b5559",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/03ede52a1f360441b5826cb8a798e0d0a919731f",
+                "reference": "03ede52a1f360441b5826cb8a798e0d0a919731f",
                 "shasum": ""
             },
             "require": {
@@ -316,25 +316,27 @@
                 "datetime",
                 "time"
             ],
-            "time": "2013-11-23 15:22:05"
+            "time": "2013-12-05 04:13:29"
         },
         {
             "name": "slim/slim",
-            "version": "2.3.5",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeguy/Slim.git",
-                "reference": "3dec4f9ee2e9c204a9f334afd72abc174c1b792e"
+                "reference": "ff7d7148848fa4f45712984d7b91ac3cbced586b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeguy/Slim/zipball/3dec4f9ee2e9c204a9f334afd72abc174c1b792e",
-                "reference": "3dec4f9ee2e9c204a9f334afd72abc174c1b792e",
+                "url": "https://api.github.com/repos/codeguy/Slim/zipball/ff7d7148848fa4f45712984d7b91ac3cbced586b",
+                "reference": "ff7d7148848fa4f45712984d7b91ac3cbced586b",
                 "shasum": ""
             },
             "require": {
-                "ext-mcrypt": "*",
                 "php": ">=5.3.0"
+            },
+            "suggest": {
+                "ext-mcrypt": "Required for HTTP cookie encryption"
             },
             "type": "library",
             "autoload": {
@@ -360,26 +362,30 @@
                 "rest",
                 "router"
             ],
-            "time": "2013-10-31 02:05:09"
+            "time": "2013-11-29 20:33:36"
         },
         {
             "name": "slim/views",
-            "version": "0.1.0",
+            "version": "0.1.1",
             "target-dir": "Slim/Views",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeguy/Slim-Views.git",
-                "reference": "d5eca1c0932aadf7255d83f3ed02ffc07c3c8297"
+                "reference": "8c7e0f3067e5e10b7b4ca98f29bdef8d5cfe5371"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeguy/Slim-Views/zipball/d5eca1c0932aadf7255d83f3ed02ffc07c3c8297",
-                "reference": "d5eca1c0932aadf7255d83f3ed02ffc07c3c8297",
+                "url": "https://api.github.com/repos/codeguy/Slim-Views/zipball/8c7e0f3067e5e10b7b4ca98f29bdef8d5cfe5371",
+                "reference": "8c7e0f3067e5e10b7b4ca98f29bdef8d5cfe5371",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "slim/slim": ">=2.0.0"
+                "slim/slim": ">=2.4.0"
+            },
+            "suggest": {
+                "smarty/smarty": "Smarty templating system",
+                "twig/twig": "Twig templating system"
             },
             "type": "library",
             "autoload": {
@@ -403,27 +409,27 @@
                     "homepage": "http://www.joshlockhart.com/"
                 }
             ],
-            "description": "Twig View Parser package for the Slim Framework",
+            "description": "Smarty and Twig View Parser package for the Slim Framework",
             "homepage": "http://github.com/codeguy/Slim-Views",
             "keywords": [
                 "extensions",
                 "slimphp",
                 "templating"
             ],
-            "time": "2013-07-10 07:34:17"
+            "time": "2013-12-08 10:18:35"
         },
         {
             "name": "twig/twig",
-            "version": "v1.14.2",
+            "version": "v1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64"
+                "reference": "85e4ff98000157ff753d934b9f13659a953f5666"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/ca445842fcea4f844d68203ffa2d00f5e3cdea64",
-                "reference": "ca445842fcea4f844d68203ffa2d00f5e3cdea64",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/85e4ff98000157ff753d934b9f13659a953f5666",
+                "reference": "85e4ff98000157ff753d934b9f13659a953f5666",
                 "shasum": ""
             },
             "require": {
@@ -432,7 +438,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-master": "1.15-dev"
                 }
             },
             "autoload": {
@@ -459,7 +465,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-10-30 08:20:53"
+            "time": "2013-12-06 07:47:10"
         }
     ],
     "packages-dev": [

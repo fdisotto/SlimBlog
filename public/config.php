@@ -25,7 +25,7 @@ $capsule->addConnection(array(
     'host' => 'localhost',
     'database' => 'slimblog',
     'username' => 'root',
-    'password' => '',
+    'password' => '090190',
     'prefix' => '',
     'charset' => 'utf8',
     'collation' => 'utf8_general_ci',

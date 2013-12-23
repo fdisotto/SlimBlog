@@ -1,6 +1,10 @@
 Changelog
 =====
 
+####23-12-2013
+* Fixed some stuff
+* Added routes directory
+
 ####25-11-2013
 * Removed capsule from project as its no longer supported
 * Changed methods in Users model to be static

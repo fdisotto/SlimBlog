@@ -1,4 +1,10 @@
 <?php
+/**
+ * Display errors
+ */
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require_once "../vendor/autoload.php";
 
 date_default_timezone_set('Europe/Rome');
@@ -13,7 +19,7 @@ define("TEMPLATEDIR", ROOT . "templates" . DS);
  */
 $app = new \Slim\Slim(array(
     "view" => new \Slim\Views\Twig(),
-    "mode" => "development",
+    'debug' => true
 ));
 
 /**

@@ -9,7 +9,7 @@ $capsule->addConnection(array(
     'host' => 'localhost',
     'database' => 'slimblog',
     'username' => 'root',
-    'password' => 's',
+    'password' => '',
     'prefix' => '',
     'charset' => 'utf8',
     'collation' => 'utf8_general_ci',

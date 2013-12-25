@@ -5,14 +5,24 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once "../vendor/autoload.php";
-
+/**
+ * Default timezone
+ */
 date_default_timezone_set('Europe/Rome');
 
+/**
+ * Define some constants
+ */
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", realpath(dirname(__DIR__)) . DS);
+define("VENDORDIR", ROOT . "vendor" . DS);
 define("ROUTEDIR", ROOT . "routes" . DS);
 define("TEMPLATEDIR", ROOT . "templates" . DS);
+
+/**
+ * Include autoload file
+ */
+require_once VENDORDIR . "autoload.php";
 
 /**
  * Create app

@@ -2,7 +2,7 @@ Changelog
 =====
 
 ####05-01-2014
-* Add excerpt function for truncate article at 100 word in home page
+* Add excerpt function for truncate article at 70 word in home page
 * Add option in admin settings if want excerpt article or not
 * Update SQL
 

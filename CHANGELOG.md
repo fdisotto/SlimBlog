@@ -1,6 +1,11 @@
 Changelog
 =====
 
+####05-01-2014
+* Add excerpt function for truncate article at 100 word in home page
+* Add option in admin settings if want excerpt article or not
+* Update SQL
+
 ####23-12-2013
 * Added template system
 

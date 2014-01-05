@@ -232,4 +232,18 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         Users::insert(array('username' => $username, 'password' => $password, 'email' => $email, 'created_at' => $created_at));
         $app->render('success.html', array('redirect' => $redirect));
     });
+    
+    $app->get('/posts/activate/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
+        $redirect = $settings->base_url . '/admin';
+
+        Posts::where('id', '=', $id)->update(array('active' => 'true'));
+        $app->render('success.html', array('redirect' => $redirect));
+    })->conditions(array('id' => '\d+'));
+    
+    $app->get('/posts/deactivate/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
+        $redirect = $settings->base_url . '/admin';
+
+        Posts::where('id', '=', $id)->update(array('active' => 'false'));
+        $app->render('success.html', array('redirect' => $redirect));;
+    })->conditions(array('id' => '\d+'));
 });

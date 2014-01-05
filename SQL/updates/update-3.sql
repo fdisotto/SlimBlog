@@ -1,0 +1,1 @@
+ALTER TABLE `posts` ADD `active` ENUM( 'true', 'false' ) NOT NULL ;

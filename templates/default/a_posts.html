@@ -6,6 +6,7 @@
             <tr>
                 <th><span class="glyphicon glyphicon-th-large"></span></th>
                 <th>Title</th>
+                <th>State</th>
                 <th>Author</th>
                 <th>Date</th>
                 <th>Action</th>
@@ -16,6 +17,13 @@
                 <tr>
                     <td>{{loop.index}}</td>
                     <td><a href="{{settings.base_url}}/post/{{post.id}}">{{post.title}}</a></td>
+                    <td>
+                        {% if post.active is sameas("true") %}
+                            Active/<a href="{{settings.base_url}}/admin/posts/deactivate/{{post.id}}">Deactivate</a>
+                        {% else %}
+                            <a href="{{settings.base_url}}/admin/posts/activate/{{post.id}}">Activate</a>/Deactive
+                        {% endif %}
+                    </td>
                     <td>{{post.author}}</td>
                     <td>{{post.date}}</td>
                     <td><a href="{{settings.base_url}}/admin/posts/edit/{{post.id}}">Edit</a> | <a href="{{settings.base_url}}/admin/posts/delete/{{post.id}}">Delete</a></td>

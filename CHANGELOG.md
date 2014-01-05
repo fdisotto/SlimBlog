@@ -4,6 +4,7 @@ Changelog
 ####05-01-2014
 * Add excerpt function for truncate article at 70 word in home page
 * Add option in admin settings if want truncate article or not
+* Now you can select status of article (active, deactive)
 * Update SQL
 
 ####23-12-2013

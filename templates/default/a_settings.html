@@ -20,10 +20,20 @@
                   {% for dir in dirs %}
                       <option value="{{dir|e}}" {% if settings.template == dir %}selected{% endif %}>{{dir|e}}</option>
                   {% endfor %}
-              </select>
+              </select><br />
 
               <label for="post_per_page" class="control-label">Post per page</label>
               <input type="text" name="post_per_page" class="form-control" id="post_per_page" value="{{settings.post_per_page}}" required><br />
+              
+              <div class="checkbox">
+                <label for="truncate" class="control-label">Truncate article</label>
+                <input type="checkbox" name="truncate" class="form-control" id="truncate"
+                       {% if settings.truncate is sameas("true") %}
+                           checked
+                       {% endif %}
+                ><br />
+              </div>
+              
               <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
           </form>
     </div>

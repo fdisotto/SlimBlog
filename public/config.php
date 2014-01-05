@@ -36,3 +36,7 @@ use dflydev\markdown\MarkdownParser;
 $app->container->singleton('markdown', function () {
     return new MarkdownParser();
 });
+
+foreach (glob(ROOT . 'libs' . DS . '*.php') as $filename) {
+    require_once $filename;
+}

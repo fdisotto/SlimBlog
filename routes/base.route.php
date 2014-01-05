@@ -6,7 +6,14 @@ $app->get('/(:page)', function($page = 1) use ($app, $settings) {
         $post['author'] = Users::get_author($post['user_id']);
         $post['date'] = date('d-m-Y H:i', $post['creation']);
         $post['url'] = $app->request->getUrl() . $app->request->getPath() . 'post/' . $post['id'];
-        $post['text'] = $app->markdown->transformMarkdown($post['text']);
+        
+        if ($settings->truncate == 'true') {
+            $text = truncate_to_n_words($post['text'], 70, $post['url']);
+            $post['text'] = $app->markdown->transformMarkdown($text);
+        } else {
+            $post['text'] = $app->markdown->transformMarkdown($post['text']);
+        }
+        
         $post['count'] = Posts::find($post['id'])->comments->count();
         $arr[] = $post;
     }

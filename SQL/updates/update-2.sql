@@ -1,0 +1,1 @@
+ALTER TABLE `settings` ADD `truncate` ENUM( 'true', 'false' ) NOT NULL;

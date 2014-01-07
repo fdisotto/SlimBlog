@@ -31,12 +31,9 @@ $app->config(array(
     "templates.path" => TEMPLATEDIR . $settings->template . DS,
 ));
 
-use dflydev\markdown\MarkdownParser;
-
-$app->container->singleton('markdown', function () {
-    return new MarkdownParser();
-});
-
+/**
+ * Load all libs
+ */
 foreach (glob(ROOT . 'libs' . DS . '*.php') as $filename) {
     require_once $filename;
 }

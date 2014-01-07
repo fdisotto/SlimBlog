@@ -1,6 +1,9 @@
 Changelog
 =====
 
+####07-01-2014
+* Removed dflydev/markdown because are deprecated, now use michelf/php-markdown
+
 ####05-01-2014
 * Add excerpt function for truncate article at 70 word in home page
 * Add option in admin settings if want truncate article or not

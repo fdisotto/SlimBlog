@@ -3,10 +3,10 @@
     "require": {
         "php": ">=5.3.0",
         "slim/slim": "2.*",
-        "slim/views": "0.1.*",
+        "slim/views": "0.*",
         "twig/twig": "1.*",
-        "illuminate/database": "v4.0.9",
-        "dflydev/markdown": "1.0.*"
+        "illuminate/database": "4.*",
+        "michelf/php-markdown": "1.*"
     },
     "autoload": {
         "classmap": [

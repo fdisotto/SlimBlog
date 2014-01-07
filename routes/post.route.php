@@ -6,7 +6,7 @@ $app->get('/post/:id', function($id) use ($app) {
 
         $post->author = Users::get_author($post->user_id);
         $post->date = date('d-m-Y H:i', $post->creation);
-        $post->text = \Michelf\MarkdownExtra::defaultTransform($post->text);
+        $post->text = $app->markdown->parse($post->text);
         $post->count = Posts::find($post->id)->comments->count();
 
         $comments = Posts::find($post->id)->comments;

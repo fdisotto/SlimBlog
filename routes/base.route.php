@@ -10,9 +10,9 @@ $app->get('/(:page)', function($page = 1) use ($app, $settings) {
 
             if ($settings->truncate == 'true') {
                 $text = truncate_to_n_words($post['text'], 70, $post['url']);
-                $post['text'] = \Michelf\MarkdownExtra::defaultTransform($text); //$app->markdown->transformMarkdown($text);
+                $post['text'] = $app->markdown->parse($text); //$app->markdown->transformMarkdown($text);
             } else {
-                $post['text'] = \Michelf\MarkdownExtra::defaultTransform($post['text']);
+                $post['text'] = $app->markdown->parse($post['text']);
             }
 
             $post['count'] = Posts::find($post['id'])->comments->count();

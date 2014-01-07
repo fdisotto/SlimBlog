@@ -2,7 +2,7 @@ Changelog
 =====
 
 ####07-01-2014
-* Removed dflydev/markdown because are deprecated, now use michelf/php-markdown
+* Use erusev/parsedown, support github flavored markdown
 
 ####05-01-2014
 * Add excerpt function for truncate article at 70 word in home page

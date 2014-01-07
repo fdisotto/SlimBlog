@@ -69,7 +69,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
     $app->post('/markdown/ajax', $authenticate($app, $settings), function() use ($app) {
         if ($app->request->post('markdown') !== null) {
-            echo \Michelf\MarkdownExtra::defaultTransform($app->request->post('markdown'));
+            echo $app->markdown->parse($app->request->post('markdown'));
         }
     });
 

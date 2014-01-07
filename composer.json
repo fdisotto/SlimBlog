@@ -6,7 +6,7 @@
         "slim/views": "0.*",
         "twig/twig": "1.*",
         "illuminate/database": "4.*",
-        "michelf/php-markdown": "1.*"
+        "erusev/parsedown": "dev-master"
     },
     "autoload": {
         "classmap": [

@@ -20,8 +20,7 @@ Install
 Features
 ---
 * Create new post with live markdown editor
-  * [Full documentation of the Markdown syntax](http://daringfireball.net/projects/markdown/)
-  * [Markdown Extra syntax additions](http://michelf.ca/projects/php-markdown/extra/)
+  * [Github flavored markdown](https://help.github.com/articles/github-flavored-markdown)
 * Edit/Delete posts and manage users
 * Manage settings
 * Template system

@@ -32,6 +32,13 @@ $app->config(array(
 ));
 
 /**
+ * Markdown support
+ */
+$app->container->singleton('markdown', function () {
+    return Parsedown::instance();
+});
+
+/**
  * Load all libs
  */
 foreach (glob(ROOT . 'libs' . DS . '*.php') as $filename) {

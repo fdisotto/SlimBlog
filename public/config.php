@@ -23,6 +23,7 @@ $app->db = $capsule;
  * Extract settings from db
  */
 $settings = Settings::where('id', '=', 1)->first();
+$settings->base_url = $app->request->getUrl() . $app->request->getScriptName();
 
 /**
  * Set template directory

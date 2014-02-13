@@ -12,9 +12,6 @@
               <label for="title" class="control-label">Title</label>
               <input type="text" name="title" class="form-control" id="title" value="{{settings.title}}" required><br />
 
-              <label for="base_url" class="control-label">Site URL</label>
-              <input type="text" name="base_url" class="form-control" id="base_url" value="{{settings.base_url}}" required><br />
-
               <label for="template" class="control-label">Select template</label>
               <select class="form-control" name="template" id="template">
                   {% for dir in dirs %}

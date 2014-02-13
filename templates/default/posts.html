@@ -29,11 +29,25 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <ul class="pagination">
-                <li class="{% if page == 1 %}disabled{% endif %}"><a href="{{settings.base_url}}/{{page-1}}">&laquo;</a></li>
+                <li class="{% if page == 1 %}disabled{% endif %}">
+                  {% if page > 1 %}
+                    <a href="{{settings.base_url}}/{{page-1}}">&laquo;</a>
+                  {% else %}
+                    <span>&laquo;</span>
+                  {% endif %}
+                </li>
                 {% for i in 1..pages %}
-                      <li class="{% if page == i %}active{% endif %}"><a href="{{settings.base_url}}/{{i}}">{{i}}</a></li>
+                  <li class="{% if page == i %}active{% endif %}">
+                    <a href="{{settings.base_url}}/{{i}}">{{i}}</a>
+                  </li>
                 {% endfor %}
-                <li class="{% if page == pages %}disabled{% endif %}"><a href="{{settings.base_url}}/{{page+1}}">&raquo;</a></li>
+                <li class="{% if page == pages %}disabled{% endif %}">
+                  {% if page < pages %}
+                    <a href="{{settings.base_url}}/{{page+1}}">&raquo;</a>
+                  {% else %}
+                    <span>&raquo;</span>
+                  {% endif %}
+                </li>
             </ul>
         </div>
     </div>

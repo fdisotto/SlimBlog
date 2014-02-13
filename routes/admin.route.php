@@ -139,10 +139,6 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
             $app->flash('error', 'Please insert title.');
             $app->redirect($settings->base_url . '/admin/settings');
         }
-        if($base_url == "" OR !filter_var($base_url, FILTER_VALIDATE_URL)) {
-            $app->flash('error', 'Please check site url.');
-            $app->redirect($settings->base_url . '/admin/settings');
-        }
         if($post_per_page == '') {
             $app->flash('error', 'Please check post per page.');
             $app->redirect($settings->base_url . '/admin/settings');

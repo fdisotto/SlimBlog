@@ -44,7 +44,8 @@ Contributors
 **Andrew Smith**
 * [Github](https://github.com/silentworks)
 * [Website](http://silentworks.co.uk/)
-* **mnlg**
+
+**mnlg**
 * [Github](https://github.com/mnlg)
 
 

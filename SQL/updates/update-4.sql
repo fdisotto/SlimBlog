@@ -1,0 +1,1 @@
+ALTER TABLE `settings` DROP column `base_url`;

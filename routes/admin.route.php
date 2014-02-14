@@ -130,7 +130,6 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
     $app->post('/settings/update', function() use ($app, $settings) {
         $title = $app->request->post('title');
-        $base_url = $app->request->post('base_url');
         $post_per_page = (int)$app->request->post('post_per_page');
         $template = $app->request->post('template');
         $truncate = $app->request->post('truncate') == 'on' ? 'true' : 'false';
@@ -150,7 +149,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
         $redirect = $settings->base_url . '/admin/settings';
 
-        Settings::where('id', '=', 1)->update(array('title' => $title, 'base_url' => $base_url, 'template' => $template, 'post_per_page' => $post_per_page, 'truncate' => $truncate));
+        Settings::where('id', '=', 1)->update(array('title' => $title, 'template' => $template, 'post_per_page' => $post_per_page, 'truncate' => $truncate));
         $app->render('success.html', array('redirect' => $redirect));
     });
 

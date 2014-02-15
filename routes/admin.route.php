@@ -16,7 +16,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
             $_SESSION['user'] = $username;
             $app->redirect($settings->base_url . '/admin');
         } else {
-            $app->flash('error', 'Invalid user or password');
+            $app->flash('error', 1);
             $app->redirect($settings->base_url . '/admin/login');
         }
     });
@@ -52,11 +52,11 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $redirect = $app->request->post('redirect');
 
         if ($title == "") {
-            $app->flash('error', 'Please insert title.');
+            $app->flash('error', 1);
             $app->redirect($settings->base_url . '/admin/posts/new');
         }
         if ($text == "") {
-            $app->flash('error', 'Please insert text.');
+            $app->flash('error', 2);
             $app->redirect($settings->base_url . '/admin/posts/new');
         }
 
@@ -90,11 +90,11 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $text = $app->request->post('markdown');
 
         if ($title == "") {
-            $app->flash('error', 'Please insert title.');
+            $app->flash('error', 1);
             $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
         }
         if ($text == "") {
-            $app->flash('error', 'Please insert text.');
+            $app->flash('error', 2);
             $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
         }
 
@@ -121,11 +121,19 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $paths = glob(TEMPLATEDIR . '*' , GLOB_ONLYDIR);
         $dirs = array();
         foreach($paths as $path) {
-            $d = explode(DS, $path);
-            $dirs[] = end($d);
+            $a = explode(DS, $path);
+            $dirs[] = end($a);
         }
 
-        $app->render('a_settings.html', array('error' => $error, 'dirs' => $dirs));
+        $l = glob(LANGUAGEDIR . '*.php');
+        $langs = array();
+        foreach($l as $lang) {
+            $a = explode('.', $lang);
+            $b = explode(DS, $a[0]);
+            $langs[] = end($b);
+        }
+
+        $app->render('a_settings.html', array('error' => $error, 'dirs' => $dirs, 'langs' => $langs));
     });
 
     $app->post('/settings/update', function() use ($app, $settings) {
@@ -133,23 +141,28 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $post_per_page = (int)$app->request->post('post_per_page');
         $template = $app->request->post('template');
         $truncate = $app->request->post('truncate') == 'on' ? 'true' : 'false';
+        $language = $app->request->post('language');
 
         if($title == "") {
-            $app->flash('error', 'Please insert title.');
+            $app->flash('error', 1);
             $app->redirect($settings->base_url . '/admin/settings');
         }
         if($post_per_page == '') {
-            $app->flash('error', 'Please check post per page.');
+            $app->flash('error', 2);
             $app->redirect($settings->base_url . '/admin/settings');
         }
         if($template == '') {
-            $app->flash('error', 'Please select template.');
+            $app->flash('error', 3);
+            $app->redirect($settings->base_url . '/admin/settings');
+        }
+        if($language == '') {
+            $app->flash('error', 4);
             $app->redirect($settings->base_url . '/admin/settings');
         }
 
         $redirect = $settings->base_url . '/admin/settings';
 
-        Settings::where('id', '=', 1)->update(array('title' => $title, 'template' => $template, 'post_per_page' => $post_per_page, 'truncate' => $truncate));
+        Settings::where('id', '=', 1)->update(array('title' => $title, 'template' => $template, 'post_per_page' => $post_per_page, 'truncate' => $truncate, 'language' => $language));
         $app->render('success.html', array('redirect' => $redirect));
     });
 
@@ -172,11 +185,11 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $email = $app->request->post('email');
 
         if($username == "") {
-            $app->flash('error', 'Please check username.');
+            $app->flash('error', 1);
             $app->redirect($settings->base_url . '/admin/users/new');
         }
         if($email == "" OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $app->flash('error', 'Please check email.');
+            $app->flash('error', 2);
             $app->redirect($settings->base_url . '/admin/users/new');
         }
 
@@ -210,15 +223,15 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $created_at = date('Y-m-d H:i:s');
 
         if($username == "") {
-            $app->flash('error', 'Please check username.');
+            $app->flash('error', 1);
             $app->redirect($settings->base_url . '/admin/users/new');
         }
         if($password == "") {
-            $app->flash('error', 'Please check password.');
+            $app->flash('error', 2);
             $app->redirect($settings->base_url . '/admin/users/new');
         }
         if($email == "" OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $app->flash('error', 'Please check email.');
+            $app->flash('error', 3);
             $app->redirect($settings->base_url . '/admin/users/new');
         }
 
@@ -227,14 +240,14 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         Users::insert(array('username' => $username, 'password' => $password, 'email' => $email, 'created_at' => $created_at));
         $app->render('success.html', array('redirect' => $redirect));
     });
-    
+
     $app->get('/posts/activate/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
         $redirect = $settings->base_url . '/admin';
 
         Posts::where('id', '=', $id)->update(array('active' => 'true'));
         $app->render('success.html', array('redirect' => $redirect));
     })->conditions(array('id' => '\d+'));
-    
+
     $app->get('/posts/deactivate/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
         $redirect = $settings->base_url . '/admin';
 

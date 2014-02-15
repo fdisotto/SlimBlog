@@ -1,6 +1,11 @@
 Changelog
 =====
 
+####15-02-2014
+* Add multilanguage support (english, italian, for now...)
+* Some fixes
+* SQL update
+
 ####07-01-2014
 * Use erusev/parsedown, support github flavored markdown
 

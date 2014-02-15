@@ -2,6 +2,6 @@
 
 {% block content %}
     <h1 class="text-center">
-        <span class="label label-danger">Error</span>
+        <span class="label label-danger">{{ include(template_from_string(lang.error)) }}</span>
     </h1>
 {% endblock %}

@@ -2,23 +2,31 @@
 
 {% block content %}
     <div class="container">
-          <form class="form-signin" method="post" action="{{settings.base_url}}/admin/users/new">
-              <h2 class="form-signin-heading">Create new user</h2><br />
+          <form class="form-signin" method="post" action="{{ baseUrl() }}/admin/users/new">
+              <h2 class="form-signin-heading">{{ include(template_from_string(lang.newuser)) }}</h2><br />
 
               {% if error is not empty %}
-                  <h3 class="text-center"><span class="label label-danger">{{error}}</span></h3>
+                  <h3 class="text-center"><span class="label label-danger">
+                        {% if error == 1 %}
+                            {{ include(template_from_string(lang.checkuser)) }}
+                        {% elseif error == 2 %}
+                            {{ include(template_from_string(lang.checkpassword)) }}
+                        {% elseif error == 3 %}
+                            {{ include(template_from_string(lang.checkemail)) }}
+                        {% endif %}
+                  </span></h3>
               {% endif %}
 
-              <label for="username" class="control-label">Username</label>
+              <label for="username" class="control-label">{{ include(template_from_string(lang.username)) }}</label>
               <input type="text" name="username" class="form-control" id="username" value="{{u.username}}" required><br />
 
-              <label for="email" class="control-label">Email</label>
+              <label for="email" class="control-label">{{ include(template_from_string(lang.email)) }}</label>
               <input type="email" name="email" class="form-control" id="email" value="{{u.email}}" required><br />
 
-              <label for="password" class="control-label">Password</label>
-              <input type="password" name="password" class="form-control" id="password" placeholder="New password" required><br />
+              <label for="password" class="control-label">{{ include(template_from_string(lang.password)) }}</label>
+              <input type="password" name="password" class="form-control" id="password" required><br />
 
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+              <button class="btn btn-lg btn-primary btn-block" type="submit">{{ include(template_from_string(lang.createuser)) }}</button>
           </form>
     </div>
 {% endblock %}

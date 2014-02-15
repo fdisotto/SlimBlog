@@ -5,10 +5,10 @@
         <meta charset="utf8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="{{settings.base_url}}/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{settings.base_url}}/css/custom.css" rel="stylesheet">
+        <link href="{{ baseUrl() }}/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ baseUrl() }}/css/custom.css" rel="stylesheet">
 
-        <script src="{{settings.base_url}}/js/jquery.js"></script>
+        <script src="{{ baseUrl() }}/js/jquery.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,19 +22,19 @@
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">{{ include(template_from_string(lang.togglenav)) }}</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{settings.base_url}}/">{{settings.title}}</a>
+                <a class="navbar-brand" href="{{ baseUrl() }}/">{{settings.title}}</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{settings.base_url}}/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="{{ baseUrl() }}/"><span class="glyphicon glyphicon-home"></span> {{ include(template_from_string(lang.home)) }}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{settings.base_url}}/admin/login"><span class="glyphicon glyphicon-tower"></span> Admin area</a></li>
+                    <li><a href="{{ baseUrl() }}/admin/login"><span class="glyphicon glyphicon-tower"></span> {{ include(template_from_string(lang.admin)) }}</a></li>
                 </ul>
             </div>
         </nav>
@@ -42,23 +42,23 @@
             <nav class="navbar navbar-default" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only">{{ include(template_from_string(lang.togglenav)) }}</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{settings.base_url}}/">{{settings.title}}</a>
+                    <a class="navbar-brand" href="{{ baseUrl() }}/">{{settings.title}}</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{settings.base_url}}/admin"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li><a href="{{settings.base_url}}/admin/posts/new"><span class="glyphicon glyphicon-file"></span> New post</a></li>
-                        <li><a href="{{settings.base_url}}/admin/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
-                        <li><a href="{{settings.base_url}}/admin/users/new"><span class="glyphicon glyphicon-star"></span> New user</a></li>
-                        <li><a href="{{settings.base_url}}/admin/settings"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
+                        <li><a href="{{ baseUrl() }}/admin"><span class="glyphicon glyphicon-home"></span> {{ include(template_from_string(lang.home)) }}</a></li>
+                        <li><a href="{{ baseUrl() }}/admin/posts/new"><span class="glyphicon glyphicon-file"></span> {{ include(template_from_string(lang.newpost)) }}</a></li>
+                        <li><a href="{{ baseUrl() }}/admin/users"><span class="glyphicon glyphicon-user"></span> {{ include(template_from_string(lang.users)) }}</a></li>
+                        <li><a href="{{ baseUrl() }}/admin/users/new"><span class="glyphicon glyphicon-star"></span> {{ include(template_from_string(lang.newuser)) }}</a></li>
+                        <li><a href="{{ baseUrl() }}/admin/settings"><span class="glyphicon glyphicon-wrench"></span> {{ include(template_from_string(lang.settings)) }}</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{settings.base_url}}/admin/logout"><span class="glyphicon glyphicon-off"></span> Logout ({{user}})</a></li>
+                        <li><a href="{{ baseUrl() }}/admin/logout"><span class="glyphicon glyphicon-off"></span> {{ include(template_from_string(lang.logout)) }} ({{user}})</a></li>
                     </ul>
                 </div>
             </nav>
@@ -73,6 +73,6 @@
             </div>
         </div>
 
-        <script src="{{settings.base_url}}/js/bootstrap.min.js"></script>
+        <script src="{{ baseUrl() }}/js/bootstrap.min.js"></script>
     </body>
 </html>

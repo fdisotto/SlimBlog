@@ -2,36 +2,53 @@
 
 {% block content %}
     <div class="container">
-          <form class="form-signin" method="post" action="{{settings.base_url}}/admin/settings/update">
-              <h2 class="form-signin-heading">Settings</h2><br />
+          <form class="form-signin" method="post" action="{{ baseUrl() }}/admin/settings/update">
+              <h2 class="form-signin-heading">{{ include(template_from_string(lang.settings)) }}</h2><br />
 
               {% if error is not empty %}
-                  <h3 class="text-center"><span class="label label-danger">{{error}}</span></h3>
+                  <h3 class="text-center"><span class="label label-danger">
+                    {% if error == 1 %}
+                        {{ include(template_from_string(lang.inserttitle)) }}
+                    {% elseif error == 2 %}
+                        {{ include(template_from_string(lang.checkpostperpage)) }}
+                    {% elseif error == 3 %}
+                        {{ include(template_from_string(lang.checktemplate)) }}
+                    {% elseif error == 4 %}
+                        {{ include(template_from_string(lang.checklanguage)) }}
+                    {% endif %}
+                  </span></h3>
               {% endif %}
 
-              <label for="title" class="control-label">Title</label>
+              <label for="title" class="control-label">{{ include(template_from_string(lang.title)) }}</label>
               <input type="text" name="title" class="form-control" id="title" value="{{settings.title}}" required><br />
 
-              <label for="template" class="control-label">Select template</label>
+              <label for="template" class="control-label">{{ include(template_from_string(lang.selecttemplate)) }}</label>
               <select class="form-control" name="template" id="template">
                   {% for dir in dirs %}
                       <option value="{{dir|e}}" {% if settings.template == dir %}selected{% endif %}>{{dir|e}}</option>
                   {% endfor %}
               </select><br />
 
-              <label for="post_per_page" class="control-label">Post per page</label>
+              <label for="post_per_page" class="control-label">{{ include(template_from_string(lang.postperpage)) }}</label>
               <input type="text" name="post_per_page" class="form-control" id="post_per_page" value="{{settings.post_per_page}}" required><br />
-              
+
               <div class="checkbox">
-                <label for="truncate" class="control-label">Truncate article</label>
+                <label for="truncate" class="control-label">{{ include(template_from_string(lang.truncatearticle)) }}</label>
                 <input type="checkbox" name="truncate" class="form-control" id="truncate"
                        {% if settings.truncate is sameas("true") %}
                            checked
                        {% endif %}
                 ><br />
-              </div>
-              
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+              </div><br />
+
+              <label for="language" class="control-label">{{ include(template_from_string(lang.selectlanguage)) }}</label>
+              <select class="form-control" name="language" id="language">
+                  {% for lang in langs %}
+                      <option value="{{lang|e}}" {% if settings.language == lang %}selected{% endif %}>{{lang|e}}</option>
+                  {% endfor %}
+              </select><br />
+
+              <button class="btn btn-lg btn-primary btn-block" type="submit">{{ include(template_from_string(lang.update)) }}</button>
           </form>
     </div>
 {% endblock %}

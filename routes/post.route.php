@@ -26,19 +26,19 @@ $app->post('/post/comment/new', function() use($app, $settings) {
     $redirect = $app->request->post('redirect');
 
     if($username == "") {
-        $app->flash('error', 'Please check username.');
+        $app->flash('error', 1);
         $app->redirect($settings->base_url . '/post/' . $post_id);
     }
     if($url == "") {
-        $app->flash('error', 'Please check url.');
+        $app->flash('error', 2);
         $app->redirect($settings->base_url . '/post/' . $post_id);
     }
     if($email == "" OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $app->flash('error', 'Please check email.');
+        $app->flash('error', 3);
         $app->redirect($settings->base_url . '/post/' . $post_id);
     }
     if($text == "") {
-        $app->flash('error', 'Please check text.');
+        $app->flash('error', 4);
         $app->redirect($settings->base_url . '/post/' . $post_id);
     }
 

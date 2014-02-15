@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><a href="{{settings.base_url}}/post/{{post.id}}">{{post.title}}</a></h3>
+                        <h3 class="panel-title"><a href="{{ baseUrl() }}/post/{{post.id}}">{{post.title}}</a></h3>
                     </div>
                     <div class="panel-body">
                         {{post.text|raw}}
@@ -14,10 +14,10 @@
                     <div class="panel-footer">
                         <div class="row">
                             <div class="col-md-6">
-                                <h6>Written by <strong>{{post.author}}</strong> on {{post.date}}.</h6>
+                                <h6>{{ include(template_from_string(lang.writtenby)) }} <strong>{{post.author}}</strong> {{ include(template_from_string(lang.on)) }} {{post.date}}.</h6>
                             </div>
                             <div class="col-md-6 text-right">
-                                <h6><a href="{{settings.base_url}}/post/{{post.id}}#comments">Comments(<strong>{{post.count}}</strong>)</a></h6>
+                                <h6><a href="{{ baseUrl() }}/post/{{post.id}}#comments">{{ include(template_from_string(lang.comments)) }}(<strong>{{post.count}}</strong>)</a></h6>
                             </div>
                         </div>
                     </div>
@@ -31,19 +31,19 @@
             <ul class="pagination">
                 <li class="{% if page == 1 %}disabled{% endif %}">
                   {% if page > 1 %}
-                    <a href="{{settings.base_url}}/{{page-1}}">&laquo;</a>
+                    <a href="{{ baseUrl() }}/{{page-1}}">&laquo;</a>
                   {% else %}
                     <span>&laquo;</span>
                   {% endif %}
                 </li>
                 {% for i in 1..pages %}
                   <li class="{% if page == i %}active{% endif %}">
-                    <a href="{{settings.base_url}}/{{i}}">{{i}}</a>
+                    <a href="{{ baseUrl() }}/{{i}}">{{i}}</a>
                   </li>
                 {% endfor %}
                 <li class="{% if page == pages %}disabled{% endif %}">
                   {% if page < pages %}
-                    <a href="{{settings.base_url}}/{{page+1}}">&raquo;</a>
+                    <a href="{{ baseUrl() }}/{{page+1}}">&raquo;</a>
                   {% else %}
                     <span>&raquo;</span>
                   {% endif %}

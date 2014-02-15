@@ -1,12 +1,23 @@
 {
-    "name": "SlimBlog",    
+    "name": "fdisotto/SlimBlog",
+    "description" : "Simple Blog written with Slim Framework",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Fabio Di Sotto",
+            "email": "fabio.disotto@gmail.com",
+            "homepage": "https://github.com/fdisotto",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">=5.3.0",
-        "slim/slim": "2.*",
-        "slim/views": "0.*",
-        "twig/twig": "1.*",
-        "illuminate/database": "4.*",
-        "erusev/parsedown": "dev-master"
+        "slim/slim": "*",
+        "slim/views": "*",
+        "twig/twig": "*",
+        "twig/extensions": "*",
+        "illuminate/database": "*",
+        "erusev/parsedown": "*"
     },
     "autoload": {
         "classmap": [

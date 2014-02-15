@@ -13,10 +13,10 @@
             <div class="panel-footer">
                 <div class="row">
                     <div class="col-md-6">
-                        <h6>Written by <strong>{{post.author}}</strong> on {{post.date}}.</h6>
+                        <h6>{{ include(template_from_string(lang.writtenby)) }} <strong>{{post.author}}</strong> {{ include(template_from_string(lang.on)) }} {{post.date}}.</h6>
                     </div>
                     <div class="col-md-6 text-right">
-                        <h6><a href="{{settings.base_url}}/post/{{post.id}}#comments">Comments(<strong>{{post.count}}</strong>)</a></h6>
+                        <h6><a href="{{ baseUrl() }}/post/{{post.id}}#comments">{{ include(template_from_string(lang.comments)) }}(<strong>{{post.count}}</strong>)</a></h6>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
 
         <div class="row">
 
-            <h3 id="comments">Comments</h3>
+            <h3 id="comments">{{ include(template_from_string(lang.comments)) }}</h3>
             {% if comments is not empty %}
                 {% for comment in comments %}
                     <div class="panel panel-default">
@@ -35,19 +35,29 @@
                             {{comment.text|raw}}
                         </div>
                         <div class="panel-footer">
-                            <h6>Posted on {{comment.created_at}}</h6>
+                            <h6>{{ include(template_from_string(lang.postedon)) }} {{comment.created_at}}</h6>
                         </div>
                     </div>
                 {% endfor %}
             {% endif %}
 
-            <form action="{{settings.base_url}}/post/comment/new" method="POST">
+            <form action="{{ baseUrl() }}/post/comment/new" method="POST">
                 {% if error is not empty %}
-                    <h3 class="text-center"><span class="label label-danger">{{error}}</span></h3>
+                    <h3 class="text-center"><span class="label label-danger">
+                        {% if error == 1 %}
+                            {{ include(template_from_string(lang.checkuser)) }}
+                        {% elseif error == 2 %}
+                            {{ include(template_from_string(lang.checkurl)) }}
+                        {% elseif error == 3 %}
+                            {{ include(template_from_string(lang.checkemail)) }}
+                        {% elseif error == 4 %}
+                            {{ include(template_from_string(lang.inserttext)) }}
+                        {% endif %}
+                    </span></h3>
                 {% endif %}
 
                 <div class="col-md-5">
-                    <input type="text" name="username" class="form-control" placeholder="Username" required />
+                    <input type="text" name="username" class="form-control" placeholder="{{ include(template_from_string(lang.username)) }}" required />
                 </div><br /><br>
 
                 <div class="col-md-5">
@@ -55,7 +65,7 @@
                 </div><br /><br>
 
                 <div class="col-md-5">
-                    <input type="email" name="email" class="form-control" placeholder="Email" required />
+                    <input type="email" name="email" class="form-control" placeholder="{{ include(template_from_string(lang.email)) }}" required />
                 </div><br /><br>
 
                 <div class="col-md-7">
@@ -65,7 +75,7 @@
                 <div class="row col-md-3">
                     <input type="hidden" name="post_id" value="{{post.id}}" />
                     <input type="hidden" name="redirect" value="{{redirect}}#comments" />
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Comment</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">{{ include(template_from_string(lang.comment)) }}</button>
                 </div>
             </form>
         </div>

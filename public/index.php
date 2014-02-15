@@ -18,6 +18,7 @@ define("ROOT", realpath(dirname(__DIR__)) . DS);
 define("VENDORDIR", ROOT . "vendor" . DS);
 define("ROUTEDIR", ROOT . "routes" . DS);
 define("TEMPLATEDIR", ROOT . "templates" . DS);
+define("LANGUAGEDIR", ROOT . "languages" . DS);
 
 /**
  * Include autoload file
@@ -77,6 +78,7 @@ $app->hook('slim.before.dispatch', function() use ($app, $settings) {
 
     $app->view()->setData('user', $user);
     $app->view()->setData('settings', $settings);
+    $app->view()->setData("lang", $app->lang);
 });
 
 /**

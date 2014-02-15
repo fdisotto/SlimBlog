@@ -49,26 +49,29 @@
             {
                 $.ajax({
                     type: "POST",
-                    url: "{{settings.base_url}}/admin/markdown/ajax",
+                    url: "{{ baseUrl() }}/admin/markdown/ajax",
                     data: { markdown: $("#markdown").val() },
                     success: function(response) {
                         $("#right").html(response);
-                    },
-                    error: function() {
-                        alert('Not working!');
                     }
                 });
             }
         });
     </script>
 
-    <form method="post" action="{{settings.base_url}}/admin/posts/new">
+    <form method="post" action="{{ baseUrl() }}/admin/posts/new">
         {% if error is not empty %}
-            <h3 class="text-center"><span class="label label-danger">{{error}}</span></h3>
+            <h3 class="text-center"><span class="label label-danger">
+                {% if error == 1 %}
+                    {{ include(template_from_string(lang.inserttitle)) }}
+                {% elseif error == 2 %}
+                    {{ include(template_from_string(lang.inserttext)) }}
+                {% endif %}
+            </span></h3>
         {% endif %}
         <div class="row">
             <div class="col-md-6" id='left'>
-                <input type="text" class="form-control" name="title" placeholder="Title" required />
+                <input type="text" class="form-control" name="title" placeholder="{{ include(template_from_string(lang.title)) }}" required />
             </div>
         </div>
         <br />
@@ -77,11 +80,11 @@
                 <textarea class="form-control" rows="15" id='markdown' name="markdown" required ></textarea>
                 <br />
 
-                <input type="hidden" name="redirect" value="{{settings.base_url}}/admin" />
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Post it</button>
+                <input type="hidden" name="redirect" value="{{ baseUrl() }}/admin" />
+                <button class="btn btn-lg btn-primary btn-block" type="submit">{{ include(template_from_string(lang.postit)) }}</button>
             </div>
             <div class="col-md-6" id='right'>
-                Loading...
+                {{ include(template_from_string(lang.loading)) }}
             </div>
         </div>
     </form>

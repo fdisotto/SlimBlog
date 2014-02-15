@@ -5,9 +5,9 @@
         <thead>
             <tr>
                 <th><span class="glyphicon glyphicon-th-large"></span></th>
-                <th>Username</th>
-                <th>Created at</th>
-                <th>Actions</th>
+                <th>{{ include(template_from_string(lang.username)) }}</th>
+                <th>{{ include(template_from_string(lang.createdat)) }}</th>
+                <th>{{ include(template_from_string(lang.action)) }}</th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +16,7 @@
                     <td>{{loop.index}}</td>
                     <td>{{user.username}}</td>
                     <td>{{user.created_at}}</td>
-                    <td><a href="{{settings.base_url}}/admin/users/edit/{{user.id}}">Edit</a> | <a href="{{settings.base_url}}/admin/users/delete/{{user.id}}">Delete</a></td>
+                    <td><a href="{{ baseUrl() }}/admin/users/edit/{{user.id}}">{{ include(template_from_string(lang.edit)) }}</a> | <a href="{{ baseUrl() }}/admin/users/delete/{{user.id}}">{{ include(template_from_string(lang.delete)) }}</a></td>
                 </tr>
             {% endfor %}
         </tbody>

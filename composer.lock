@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "485118d6ef60e727806ead2da9337258",
+    "hash": "1ee6d994c118fc01689e01489f6be8c1",
     "packages": [
         {
             "name": "erusev/parsedown",
-            "version": "dev-master",
+            "version": "0.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "4317add3a20d8584c15494a289f0154be8107279"
+                "reference": "d29ff18299210b52a75a631a70963e7c8b35b04f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/4317add3a20d8584c15494a289f0154be8107279",
-                "reference": "4317add3a20d8584c15494a289f0154be8107279",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/d29ff18299210b52a75a631a70963e7c8b35b04f",
+                "reference": "d29ff18299210b52a75a631a70963e7c8b35b04f",
                 "shasum": ""
             },
             "type": "library",
@@ -42,21 +42,21 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2013-12-28 12:57:25"
+            "time": "2014-02-06 12:16:14"
         },
         {
             "name": "illuminate/container",
-            "version": "v4.1.12",
+            "version": "v4.1.21",
             "target-dir": "Illuminate/Container",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "3dbf7e631204e14230a61cf56a4b21733f76e6bf"
+                "reference": "5bc3b7e3227bf6933d382da3cb4631ca1ca63368"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/3dbf7e631204e14230a61cf56a4b21733f76e6bf",
-                "reference": "3dbf7e631204e14230a61cf56a4b21733f76e6bf",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/5bc3b7e3227bf6933d382da3cb4631ca1ca63368",
+                "reference": "5bc3b7e3227bf6933d382da3cb4631ca1ca63368",
                 "shasum": ""
             },
             "require": {
@@ -88,36 +88,36 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-11-27 15:06:54"
+            "time": "2014-01-17 01:48:27"
         },
         {
             "name": "illuminate/database",
-            "version": "v4.1.12",
+            "version": "v4.1.21",
             "target-dir": "Illuminate/Database",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "9bb9864bdde41cc04b5e64760de00604b4e8870a"
+                "reference": "a4e6d1a61ccc3fe0eaa1d9d6a9cc9cf9f07e5b8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/9bb9864bdde41cc04b5e64760de00604b4e8870a",
-                "reference": "9bb9864bdde41cc04b5e64760de00604b4e8870a",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/a4e6d1a61ccc3fe0eaa1d9d6a9cc9cf9f07e5b8f",
+                "reference": "a4e6d1a61ccc3fe0eaa1d9d6a9cc9cf9f07e5b8f",
                 "shasum": ""
             },
             "require": {
-                "illuminate/container": "4.1.x",
-                "illuminate/events": "4.1.x",
-                "illuminate/support": "4.1.x",
+                "illuminate/container": "4.1.*",
+                "illuminate/events": "4.1.*",
+                "illuminate/support": "4.1.*",
                 "nesbot/carbon": "1.*",
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "illuminate/cache": "4.1.x",
-                "illuminate/console": "4.1.x",
-                "illuminate/filesystem": "4.1.x",
-                "illuminate/pagination": "4.1.x",
-                "illuminate/support": "4.1.x",
+                "illuminate/cache": "4.1.*",
+                "illuminate/console": "4.1.*",
+                "illuminate/filesystem": "4.1.*",
+                "illuminate/pagination": "4.1.*",
+                "illuminate/support": "4.1.*",
                 "mockery/mockery": "0.7.2",
                 "phpunit/phpunit": "3.7.*"
             },
@@ -150,26 +150,26 @@
                 "orm",
                 "sql"
             ],
-            "time": "2014-01-05 04:35:07"
+            "time": "2014-01-31 14:47:11"
         },
         {
             "name": "illuminate/events",
-            "version": "v4.1.12",
+            "version": "v4.1.21",
             "target-dir": "Illuminate/Events",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
-                "reference": "7a658e96e9631c4ae541a205563984a80af7dc01"
+                "reference": "f07a516087bf05e216af01c0cb046983d101a6cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/7a658e96e9631c4ae541a205563984a80af7dc01",
-                "reference": "7a658e96e9631c4ae541a205563984a80af7dc01",
+                "url": "https://api.github.com/repos/illuminate/events/zipball/f07a516087bf05e216af01c0cb046983d101a6cd",
+                "reference": "f07a516087bf05e216af01c0cb046983d101a6cd",
                 "shasum": ""
             },
             "require": {
-                "illuminate/container": "4.1.x",
-                "illuminate/support": "4.1.x",
+                "illuminate/container": "4.1.*",
+                "illuminate/support": "4.1.*",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -199,21 +199,21 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2013-10-29 12:20:27"
+            "time": "2014-01-17 20:11:45"
         },
         {
             "name": "illuminate/support",
-            "version": "v4.1.12",
+            "version": "v4.1.21",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "71dfffa99a898c168b9909805f9dee13e0188691"
+                "reference": "f6df9a5d9fac6b5fda1c94d2cd2847346967bdbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/71dfffa99a898c168b9909805f9dee13e0188691",
-                "reference": "71dfffa99a898c168b9909805f9dee13e0188691",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/f6df9a5d9fac6b5fda1c94d2cd2847346967bdbc",
+                "reference": "f6df9a5d9fac6b5fda1c94d2cd2847346967bdbc",
                 "shasum": ""
             },
             "require": {
@@ -250,7 +250,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-01-05 04:34:05"
+            "time": "2014-01-30 19:59:45"
         },
         {
             "name": "nesbot/carbon",
@@ -399,17 +399,64 @@
             "time": "2013-12-08 10:18:35"
         },
         {
-            "name": "twig/twig",
-            "version": "v1.15.0",
+            "name": "twig/extensions",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fabpot/Twig.git",
-                "reference": "85e4ff98000157ff753d934b9f13659a953f5666"
+                "url": "https://github.com/fabpot/Twig-extensions.git",
+                "reference": "f91a82ec225e5bb108e01a0f93c9be04f84dcfa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/85e4ff98000157ff753d934b9f13659a953f5666",
-                "reference": "85e4ff98000157ff753d934b9f13659a953f5666",
+                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
+                "reference": "f91a82ec225e5bb108e01a0f93c9be04f84dcfa0",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_Extensions_": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Common additional features for Twig that do not directly belong in core",
+            "homepage": "https://github.com/fabpot/Twig-extensions",
+            "keywords": [
+                "debug",
+                "i18n",
+                "text"
+            ],
+            "time": "2013-10-18 19:37:15"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v1.15.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fabpot/Twig.git",
+                "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/1fb5784662f438d7d96a541e305e28b812e2eeed",
+                "reference": "1fb5784662f438d7d96a541e305e28b812e2eeed",
                 "shasum": ""
             },
             "require": {
@@ -433,11 +480,19 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com"
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                },
+                {
+                    "name": "Twig Team",
+                    "homepage": "https://github.com/fabpot/Twig/graphs/contributors",
+                    "role": "Contributors"
                 }
             ],
             "description": "Twig, the flexible, fast, and secure template language for PHP",
@@ -445,7 +500,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-12-06 07:47:10"
+            "time": "2014-02-13 10:19:29"
         }
     ],
     "packages-dev": [
@@ -455,9 +510,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "erusev/parsedown": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": ">=5.3.0"
     },

@@ -5,28 +5,28 @@
         <thead>
             <tr>
                 <th><span class="glyphicon glyphicon-th-large"></span></th>
-                <th>Title</th>
-                <th>State</th>
-                <th>Author</th>
-                <th>Date</th>
-                <th>Action</th>
+                <th>{{ include(template_from_string(lang.title)) }}</th>
+                <th>{{ include(template_from_string(lang.state)) }}</th>
+                <th>{{ include(template_from_string(lang.author)) }}</th>
+                <th>{{ include(template_from_string(lang.date)) }}</th>
+                <th>{{ include(template_from_string(lang.action)) }}</th>
             </tr>
         </thead>
         <tbody>
             {% for post in posts %}
                 <tr>
                     <td>{{loop.index}}</td>
-                    <td><a href="{{settings.base_url}}/post/{{post.id}}">{{post.title}}</a></td>
+                    <td><a href="{{ baseUrl() }}/post/{{post.id}}">{{post.title}}</a></td>
                     <td>
                         {% if post.active is sameas("true") %}
-                            Active/<a href="{{settings.base_url}}/admin/posts/deactivate/{{post.id}}">Deactivate</a>
+                            {{ include(template_from_string(lang.activate)) }}/<a href="{{ baseUrl() }}/admin/posts/deactivate/{{post.id}}">{{ include(template_from_string(lang.deactivate)) }}</a>
                         {% else %}
-                            <a href="{{settings.base_url}}/admin/posts/activate/{{post.id}}">Activate</a>/Deactive
+                            <a href="{{ baseUrl() }}/admin/posts/activate/{{post.id}}">{{ include(template_from_string(lang.activate)) }}</a>/{{ include(template_from_string(lang.deactivate)) }}
                         {% endif %}
                     </td>
                     <td>{{post.author}}</td>
                     <td>{{post.date}}</td>
-                    <td><a href="{{settings.base_url}}/admin/posts/edit/{{post.id}}">Edit</a> | <a href="{{settings.base_url}}/admin/posts/delete/{{post.id}}">Delete</a></td>
+                    <td><a href="{{ baseUrl() }}/admin/posts/edit/{{post.id}}">{{ include(template_from_string(lang.edit)) }}</a> | <a href="{{ baseUrl() }}/admin/posts/delete/{{post.id}}">{{ include(template_from_string(lang.delete)) }}</a></td>
                 </tr>
             {% endfor %}
         </tbody>

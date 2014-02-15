@@ -2,11 +2,11 @@
 
 {% block content %}
     <div class="container">
-        <form class="form-signin" method="post" action="{{settings.base_url}}/admin/users/delete/{{user_id}}">
-            <h2>Deleting user with id {{user_id}}</h2>
-            <h3>Are you sure?</h3>
+        <form class="form-signin" method="post" action="{{ baseUrl() }}/admin/users/delete/{{user_id}}">
+            <h2>{{ include(template_from_string(lang.deleteuser)) }} {{user_id}}</h2>
+            <h3>{{ include(template_from_string(lang.areyousure)) }}</h3>
             <input type="hidden" name="_METHOD" value="DELETE"/>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">DELETE</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ include(template_from_string(lang.delete)) }}</button>
         </form>
     <div>
 {% endblock %}

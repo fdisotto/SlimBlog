@@ -33,6 +33,19 @@ $app->config(array(
 ));
 
 /**
+ * Add some twig extensions for multilanguage support
+ */
+$app->view->parserExtensions = array(
+    new \Slim\Views\TwigExtension(),
+    new Twig_Extension_StringLoader()
+);
+
+/**
+ * Get language
+ */
+$app->lang = require_once LANGUAGEDIR . $settings->language . ".php";
+
+/**
  * Markdown support
  */
 $app->container->singleton('markdown', function () {

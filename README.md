@@ -35,9 +35,9 @@ ToDo List
 
 Screenshots
 ---
-[Home](http://i.imgur.com/W2KOdC5)
-[Live editor](http://i.imgur.com/V9ryFTk)
-[Post list](http://i.imgur.com/WVLQJKG)
+* [Home](http://i.imgur.com/W2KOdC5)
+* [Live editor](http://i.imgur.com/V9ryFTk)
+* [Post list](http://i.imgur.com/WVLQJKG)
 
 Author
 ---

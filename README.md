@@ -23,6 +23,7 @@ Features
 * Edit/Delete posts and manage users
 * Manage settings
 * Template system
+* Multilanguage support
 
 ToDo List
 ---
@@ -30,7 +31,7 @@ ToDo List
 * Different user level (Super admin, writers, other)
 * ~~Template system~~
 * Installation more user friendly
-* I18n support
+* ~~I18n support~~
 
 Author
 ---

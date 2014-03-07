@@ -12,7 +12,7 @@ Install
 ---
 * Run 'php composer.phar install' in root directory
 * Run .sql files located in SQL/updates
-* Edit config.php file under public folder at 12 line with your database login data
+* Rename the config/database.config.php.install file to config/database.config.php and edit it with your database settings
 * Login with username:password
 * Enjoy
 

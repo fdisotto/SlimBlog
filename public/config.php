@@ -4,16 +4,7 @@ $app->add(new \Slim\Middleware\SessionCookie(array('secret' => 'h5/4jc/)$3kfè4(
 // Make a new connection
 use Illuminate\Database\Capsule\Manager as Capsule;
 $capsule = new Capsule;
-$capsule->addConnection(array(
-    'driver' => 'mysql',
-    'host' => 'localhost',
-    'database' => 'slimblog',
-    'username' => 'root',
-    'password' => '',
-    'prefix' => '',
-    'charset' => 'utf8',
-    'collation' => 'utf8_general_ci',
-));
+$capsule->addConnection(include ROOT . "config" . DS . 'database.config.php');
 $capsule->bootEloquent();
 $capsule->setAsGlobal();
 

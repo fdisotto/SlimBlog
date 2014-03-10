@@ -1,22 +1,11 @@
 <?php
 /**
- * Display errors
- */
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-/**
- * Default timezone
- */
-date_default_timezone_set('Europe/Rome');
-
-/**
  * Define some constants
  */
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", realpath(dirname(__DIR__)) . DS);
 define("VENDORDIR", ROOT . "vendor" . DS);
-define("ROUTEDIR", ROOT . "routes" . DS);
+define("ROUTEDIR", ROOT . "src" . DS . "routes" . DS);
 define("TEMPLATEDIR", ROOT . "templates" . DS);
 define("LANGUAGEDIR", ROOT . "languages" . DS);
 
@@ -26,17 +15,9 @@ define("LANGUAGEDIR", ROOT . "languages" . DS);
 require_once VENDORDIR . "autoload.php";
 
 /**
- * Create app
+ * Include bootstrap file
  */
-$app = new \Slim\Slim(array(
-    "view" => new \Slim\Views\Twig(),
-    'debug' => true
-));
-
-/**
- * Include configuration file
- */
-require_once 'config.php';
+require_once ROOT . 'src' . DS . 'bootstrap.php';
 
 /**
  * If user is not logged in, he's redirected to login page

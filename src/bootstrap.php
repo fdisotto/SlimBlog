@@ -1,4 +1,23 @@
 <?php
+/**
+ * Display errors
+ */
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+/**
+ * Default timezone
+ */
+date_default_timezone_set('Europe/Rome');
+
+/**
+ * Create app
+ */
+$app = new \Slim\Slim(array(
+    "view" => new \Slim\Views\Twig(),
+    'debug' => true
+));
+
 $app->add(new \Slim\Middleware\SessionCookie(array('secret' => 'h5/4jc/)$3kfè4()487HD3d')));
 
 // Make a new connection
@@ -46,6 +65,6 @@ $app->container->singleton('markdown', function () {
 /**
  * Load all libs
  */
-foreach (glob(ROOT . 'libs' . DS . '*.php') as $filename) {
+foreach (glob(ROOT . 'src' . DS . 'libs' . DS . '*.php') as $filename) {
     require_once $filename;
 }

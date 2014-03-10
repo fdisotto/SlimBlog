@@ -11,7 +11,7 @@ Dependencies
 Install
 ---
 * Run 'php composer.phar install' in root directory
-* Run .sql files located in SQL/updates
+* Run .sql files located in src/SQL/updates
 * Rename the config/database.config.php.install file to config/database.config.php and edit it with your database settings
 * Login with username:password
 * Enjoy

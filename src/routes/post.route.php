@@ -15,6 +15,9 @@ $app->get('/post/:id', function($id) use ($app) {
 
         $app->render('post.html', array('post' => $post, 'error' => $error, 'comments' => $comments, 'redirect' => $redirect));
     }
+    else {
+        $app->render('404_post.html');
+    }
 })->conditions(array('page' => '\d+'));
 
 $app->post('/post/comment/new', function() use($app, $settings) {

@@ -53,5 +53,6 @@ return array(
     "writtenby" => "Written by",
     "on" => "on",
     "postedon" => "Posted on",
-    "checkurl" => "Please check the url"
+    "checkurl" => "Please check the url",
+    "postnotfound" => "Post not found"
 );

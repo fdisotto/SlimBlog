@@ -52,5 +52,6 @@ return array(
     "writtenby" => "Scritto da",
     "on" => "il",
     "postedon" => "Postato il",
-    "checkurl" => "Controlla l'url"
+    "checkurl" => "Controlla l'url",
+    "postnotfound" => "Post non trovato"
 );

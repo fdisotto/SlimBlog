@@ -75,43 +75,71 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
     $app->get('/posts/edit/:id', $authenticate($app, $settings), function($id) use ($app) {
         $post = Posts::where('id', '=', $id)->first();
-        $title = $post->title;
-        $text = $post->text;
-        $postId = $id;
+        
+        if($post){
+            $title = $post->title;
+            $text = $post->text;
+            $postId = $id;
 
-        $flash = $app->view()->getData('flash');
-        $error = isset($flash['error']) ? $flash['error'] : '';
+            $flash = $app->view()->getData('flash');
+            $error = isset($flash['error']) ? $flash['error'] : '';
 
-        $app->render('a_post_edit.html', array('id' => $postId, 'title' => $title, 'text' => $text, 'error' => $error));
+            $app->render('a_post_edit.html', array('id' => $postId, 'title' => $title, 'text' => $text, 'error' => $error));
+        }
+        else{
+            $app->render('404_post.html');
+        }
     })->conditions(array('id' => '\d+'));
 
     $app->post('/posts/edit/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
         $title = $app->request->post('title');
         $text = $app->request->post('markdown');
+        
+        $post = Posts::where('id', '=', $id)->first();
+        
+        if($post){
+            if ($title == "") {
+                $app->flash('error', 1);
+                $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
+            }
+            if ($text == "") {
+                $app->flash('error', 2);
+                $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
+            }
+            
+            $redirect = $settings->base_url . '/admin';
 
-        if ($title == "") {
-            $app->flash('error', 1);
-            $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
+            $post->update(array('title' => $title, 'text' => $text));
+            $app->render('success.html', array('redirect' => $redirect));
         }
-        if ($text == "") {
-            $app->flash('error', 2);
-            $app->redirect($settings->base_url . '/admin/posts/edit/' . $id);
+        else {
+            $app->render('404_post.html');
         }
-
-        $redirect = $settings->base_url . '/admin';
-
-        Posts::where('id', '=', $id)->update(array('title' => $title, 'text' => $text));
-        $app->render('success.html', array('redirect' => $redirect));
     })->conditions(array('id' => '\d+'));
 
     $app->get('/posts/delete/:id', $authenticate($app, $settings), function($id) use ($app) {
-        $app->render('a_post_delete.html', array('post_id' => $id));
+        $post = Posts::where('id', '=', $id)->first();
+        
+        if($post){
+            $app->render('a_post_delete.html', array('post_id' => $id));
+        }
+        else {
+            $app->render('404_post.html');
+        }
+        
     })->conditions(array('id' => '\d+'));
 
     $app->delete('/posts/delete/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
-        Posts::destroy($id);
-        $redirect = $settings->base_url . '/admin';
-        $app->render('success.html', array('redirect' => $redirect));
+        $post = Posts::where('id', '=', $id)->first();
+        
+        if($post){
+            Posts::destroy($id);
+            $redirect = $settings->base_url . '/admin';
+            $app->render('success.html', array('redirect' => $redirect));
+        }
+        else {
+            $app->render('404_post.html');
+        }
     })->conditions(array('id' => '\d+'));
 
     $app->get('/settings/', $authenticate($app, $settings), function() use ($app) {
@@ -242,16 +270,30 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
     });
 
     $app->get('/posts/activate/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
-        $redirect = $settings->base_url . '/admin';
+        $post = Posts::where('id', '=', $id)->first();
+        
+        if($post){
+            $redirect = $settings->base_url . '/admin';
 
-        Posts::where('id', '=', $id)->update(array('active' => 'true'));
-        $app->render('success.html', array('redirect' => $redirect));
+            $post->update(array('active' => 'true'));
+            $app->render('success.html', array('redirect' => $redirect));
+        }
+        else {
+            $app->render('404_post.html');
+        }
     })->conditions(array('id' => '\d+'));
 
     $app->get('/posts/deactivate/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
-        $redirect = $settings->base_url . '/admin';
+        $post = Posts::where('id', '=', $id)->first();
+        
+        if($post){
+            $redirect = $settings->base_url . '/admin';
 
-        Posts::where('id', '=', $id)->update(array('active' => 'false'));
-        $app->render('success.html', array('redirect' => $redirect));;
+            $post->update(array('active' => 'false'));
+            $app->render('success.html', array('redirect' => $redirect));
+        }
+        else {
+            $app->render('404_post.html');
+        }
     })->conditions(array('id' => '\d+'));
 });

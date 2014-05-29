@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center">
+    404 Error
+</h1>
+<div class="container">
+    <h3>{{ include(template_from_string(lang.postnotfound)) }}</h3>
+</div>
+{% endblock %}

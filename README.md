@@ -55,6 +55,7 @@ Contributors
 **mnlg**
 * [Github](https://github.com/mnlg)
 
-
+**Project forum**
+[Ost.io](http://ost.io/@fdisotto/SlimBlog)
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fdisotto/slimblog/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

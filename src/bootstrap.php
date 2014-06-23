@@ -22,12 +22,17 @@ $app->add(new \Slim\Middleware\SessionCookie(array('secret' => 'h5/4jc/)$3kfè4(
 
 // Make a new connection
 use Illuminate\Database\Capsule\Manager as Capsule;
-$capsule = new Capsule;
-$capsule->addConnection(include ROOT . "config" . DS . 'database.config.php');
-$capsule->bootEloquent();
-$capsule->setAsGlobal();
 
-$app->db = $capsule;
+if (file_exists(ROOT . 'config' . DS . 'database.config.php')) {
+    $capsule = new Capsule;
+    $capsule->addConnection(include ROOT . "config" . DS . 'database.config.php');
+    $capsule->bootEloquent();
+    $capsule->setAsGlobal();
+
+    $app->db = $capsule;
+} else {
+    die("<pre>Rename 'config/database.config.php.install' to 'config/database.config.php' and configure your connection</pre>");
+}
 
 /**
  * Extract settings from db

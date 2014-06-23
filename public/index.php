@@ -12,7 +12,11 @@ define("LANGUAGEDIR", ROOT . "languages" . DS);
 /**
  * Include autoload file
  */
-require_once VENDORDIR . "autoload.php";
+if (file_exists(VENDORDIR . "autoload.php")) {
+    require_once VENDORDIR . "autoload.php";
+} else {
+    die("<pre>Run 'composer.phar install' in root dir</pre>");
+}
 
 /**
  * Include bootstrap file

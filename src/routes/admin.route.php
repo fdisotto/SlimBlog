@@ -209,7 +209,8 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
     $app->post('/users/edit/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
         $username = $app->request->post('username');
-        $password = hash('sha512', $app->request->post('password'));
+        $pass = $app->request->post('password');
+        $password = hash('sha512', $pass );
         $email = $app->request->post('email');
 
         if($username == "") {
@@ -223,7 +224,12 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
 
         $redirect = $settings->base_url . '/admin/users';
 
-        Users::where('id', '=', $id)->update(array('username' => $username, 'password' => $password, 'email' => $email));
+        if( !empty($pass) ) {
+            Users::where('id', '=', $id)->update(array('username' => $username, 'password' => $password, 'email' => $email));
+        } else {
+            Users::where('id', '=', $id)->update(array('username' => $username, 'email' => $email));
+        }
+        
         $app->render('success.html', array('redirect' => $redirect));
     })->conditions(array('id' => '\d+'));
 

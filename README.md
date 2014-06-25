@@ -1,4 +1,4 @@
-SlimBlog
+[SlimBlog](http://fdisotto.github.io/SlimBlog/)
 =====
 
 Dependencies

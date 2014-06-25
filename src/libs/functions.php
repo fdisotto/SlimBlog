@@ -23,7 +23,7 @@ function truncate_to_n_words($text, $number_of_words, $url, $readmore = 'Read Mo
    $excerpt = first_n_words($text, $number_of_words);
    // we can't just look at the length or try == because we strip carriage returns
    if( str_word_count($text) !== str_word_count($excerpt) ) {
-      $excerpt .= '... <a href="'.$url.'">'.$readmore.'</a>';
+      $excerpt .= '... <br><a href="'.$url.'">'.$readmore.'</a>';
    }
    return $excerpt;
 }

@@ -9,16 +9,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
     <title>Slimblog</title>
-    
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
-        ga('create', 'UA-52277473-1', 'fdisotto.github.io');
-        ga('send', 'pageview');
-    </script>
   </head>
 
   <body>
@@ -41,37 +31,79 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="slimblog" class="anchor" href="#slimblog"><span class="octicon octicon-link"></span></a>SlimBlog</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<ul>
+<li><a href="http://slimframework.com">Slim Framework</a></li>
+<li><a href="http://laravel.com/docs/eloquent">Eloquent</a></li>
+<li><a href="http://twig.sensiolabs.org">Twig</a></li>
+<li><a href="http://getbootstrap.com">Bootstrap</a></li>
+</ul><h2>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<ul>
+<li>Run 'php composer.phar install' in root directory</li>
+<li>Run every *.sql files located in src/SQL and src/SQL/updates</li>
+<li>Rename the config/database.config.php.install file to config/database.config.php and edit it with your database settings</li>
+<li>Login with username:password</li>
+<li>Enjoy</li>
+</ul><h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<ul>
+<li>Create new post with live markdown editor
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<ul>
+<li><a href="https://help.github.com/articles/github-flavored-markdown">Github flavored markdown</a></li>
+</ul>
+</li>
+<li>Edit/Delete posts and manage users</li>
+<li>Manage settings</li>
+<li>Template system</li>
+<li>Multilanguage support</li>
+</ul><h2>
+<a name="todo-list" class="anchor" href="#todo-list"><span class="octicon octicon-link"></span></a>ToDo List</h2>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<ul>
+<li>Error manager</li>
+<li>Different user level (Super admin, writers, other)</li>
+<li><del>Template system</del></li>
+<li>Installation more user friendly</li>
+<li><del>I18n support</del></li>
+</ul><h2>
+<a name="screenshots" class="anchor" href="#screenshots"><span class="octicon octicon-link"></span></a>Screenshots</h2>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p><img src="http://i.imgur.com/W2KOdC5.png" alt="Home"><img src="http://i.imgur.com/V9ryFTk.png" alt="Live editor"><img src="http://i.imgur.com/WVLQJKG.png" alt="Post list"></p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<h2>
+<a name="author" class="anchor" href="#author"><span class="octicon octicon-link"></span></a>Author</h2>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p><strong>Fabio Di Sotto</strong></p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<ul>
+<li><a href="https://github.com/fdisotto">Github</a></li>
+<li><a href="https://twitter.com/fdisotto">Twitter</a></li>
+<li><a href="https://facebook.com/fdisotto">Facebook</a></li>
+</ul><h2>
+<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p><strong>Andrew Smith</strong></p>
+
+<ul>
+<li><a href="https://github.com/silentworks">Github</a></li>
+<li><a href="http://silentworks.co.uk/">Website</a></li>
+</ul><p><strong>mnlg</strong></p>
+
+<ul>
+<li><a href="https://github.com/mnlg">Github</a></li>
+</ul><p><strong>Project forum</strong>
+<a href="http://ost.io/@fdisotto/SlimBlog">Ost.io</a></p>
+
+<p><a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/fdisotto/slimblog/trend.png" alt="Bitdeli Badge"></a></p>
       </section>
     </div>
 
@@ -83,7 +115,17 @@ $ git checkout gh-pages
       </footer>
     </div>
 
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-52277473-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
 
   </body>
 </html>

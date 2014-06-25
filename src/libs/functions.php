@@ -11,7 +11,7 @@ function first_n_words($text, $number_of_words) {
    // \w[\w'-]* allows for any word character (a-zA-Z0-9_) and also contractions
    // and hyphenated words like 'range-finder' or "it's"
    // the /s flags means that . matches \n, so this can match multiple lines
-   $text = preg_replace("/^\W*((\w[\w'-]*\b\W*){1,$number_of_words}).*/ms", '\\1', $text);
+   $text = preg_replace("/^\W*((\w[\W'-]*\b\W*){1,$number_of_words}).*/ms", '\\1', $text);
 
    // strip out newline characters from our excerpt
    return str_replace("\n", "", $text);

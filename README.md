@@ -1,6 +1,14 @@
 [SlimBlog](http://fdisotto.github.io/SlimBlog/)
 =====
 
+Your SlimBlog site here?
+---
+* Fork me, add link here and send pull request
+
+SlimBlog Sites
+---
+* ...
+
 Dependencies
 ---
 * [Slim Framework](http://slimframework.com)

@@ -34,7 +34,7 @@
 
               <div class="checkbox">
                 <label for="truncate" class="control-label">{{ include(template_from_string(lang.truncatearticle)) }}</label>
-                <input type="checkbox" name="truncate" class="form-control" id="truncate"
+                <input type="checkbox" name="truncate" class="form-control" style="width:20px;" id="truncate"
                        {% if settings.truncate is sameas("true") %}
                            checked
                        {% endif %}

@@ -74,7 +74,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
     });
 
     $app->get('/posts/edit/:id', $authenticate($app, $settings), function($id) use ($app) {
-        $post = Posts::where('id', '=', $id);
+        $post = Posts::where('id', '=', $id)->first();
 
         if($post){
             $title = $post->title;
@@ -95,7 +95,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $title = $app->request->post('title');
         $text = $app->request->post('markdown');
 
-        $post = Posts::where('id', '=', $id);
+        $post = Posts::where('id', '=', $id)->first();
 
         if($post){
             if ($title == "") {
@@ -118,7 +118,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
     })->conditions(array('id' => '\d+'));
 
     $app->get('/posts/delete/:id', $authenticate($app, $settings), function($id) use ($app) {
-        $post = Posts::where('id', '=', $id);
+        $post = Posts::where('id', '=', $id)->first();
 
         if($post){
             $app->render('a_post_delete.html', array('post_id' => $id));
@@ -130,7 +130,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
     })->conditions(array('id' => '\d+'));
 
     $app->delete('/posts/delete/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
-        $post = Posts::where('id', '=', $id);
+        $post = Posts::where('id', '=', $id)->first();
 
         if($post){
             Posts::destroy($id);
@@ -203,7 +203,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
         $flash = $app->view()->getData('flash');
         $error = isset($flash['error']) ? $flash['error'] : '';
 
-        $u = Users::where('id', '=', $id);
+        $u = Users::where('id', '=', $id)->first();
         $app->render('a_user_edit.html', array('u' => $u, 'error' => $error));
     })->conditions(array('id' => '\d+'));
 
@@ -276,7 +276,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
     });
 
     $app->get('/posts/activate/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
-        $post = Posts::where('id', '=', $id);
+        $post = Posts::where('id', '=', $id)->first();
 
         if($post){
             $redirect = $settings->base_url . '/admin';
@@ -290,7 +290,7 @@ $app->group('/admin', function () use ($app, $settings, $isLogged, $authenticate
     })->conditions(array('id' => '\d+'));
 
     $app->get('/posts/deactivate/:id', $authenticate($app, $settings), function($id) use ($app, $settings) {
-        $post = Posts::where('id', '=', $id);
+        $post = Posts::where('id', '=', $id)->first();
 
         if($post){
             $redirect = $settings->base_url . '/admin';

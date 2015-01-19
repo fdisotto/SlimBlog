@@ -1,13 +1,9 @@
-[SlimBlog](http://fdisotto.github.io/SlimBlog/)
+[SlimBlog](http://slimblog.fabiodisotto.it)
 =====
 
-Your SlimBlog site here?
+Demo
 ---
-* Fork me, add link here and send pull request
-
-SlimBlog Sites
----
-* ...
+[Demo](http://slimblog.fabiodisotto.it)
 
 Dependencies
 ---
@@ -62,8 +58,3 @@ Contributors
 
 **mnlg**
 * [Github](https://github.com/mnlg)
-
-**Project forum**
-[Ost.io](http://ost.io/@fdisotto/SlimBlog)
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fdisotto/slimblog/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

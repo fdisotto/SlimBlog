@@ -2,3 +2,4 @@
 !/nbproject/*
 /vendor/
 config/database.config.php
+/.idea/*

@@ -1,0 +1,4 @@
+.phpintel/
+vendor/
+composer.lock
+composer.phar

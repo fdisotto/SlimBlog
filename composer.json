@@ -1,0 +1,41 @@
+{
+    "name": "fdisotto/SlimBlog",
+    "description": "Simple Blog written with Slim Framework 3",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Fabio Di Sotto",
+            "email": "fabio.disotto@gmail.com",
+            "homepage": "http://fdisotto.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/src"
+        }
+    },
+    "require": {
+        "php": ">=5.5",
+        "ext-mcrypt": "*",
+        "slim/slim": "^3.0",
+        "slim/twig-view": "^2.0",
+        "monolog/monolog": "^1.13",
+        "symfony/translation": "^3.0",
+        "symfony/config": "^3.0",
+        "symfony/yaml": "^3.0",
+        "symfony/twig-bridge": "^3.0",
+        "geggleto/psr7-acl": "^1.2",
+        "illuminate/database": "^5.0",
+        "erusev/parsedown": "^1.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "chmod -R 777 storage",
+            "rm -rf vendor/*/*/tests"
+        ],
+        "post-update-cmd": [
+            "rm -rf storage/cache/*",
+            "rm -rf storage/logs/*"
+        ]
+    }
+}

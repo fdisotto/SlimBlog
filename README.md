@@ -1,11 +1,11 @@
-[SlimBlog](http://slimblog.fabiodisotto.it)
+[SlimBlog](https://slimblog.fdisotto.com/)
 =====
 
 [![Join the chat at https://gitter.im/fdisotto/SlimBlog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fdisotto/SlimBlog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Demo
 ---
-[Demo](http://slimblog.fabiodisotto.it)
+[Demo](https://slimblog.fdisotto.com/)
 
 Dependencies
 ---

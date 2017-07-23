@@ -1,4 +1,5 @@
 .phpintel/
 vendor/
+storage/cache/*
 composer.lock
 composer.phar

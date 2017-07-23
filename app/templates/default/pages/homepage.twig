@@ -1,0 +1,32 @@
+{% extends 'base.twig' %}
+
+{% block body %}
+
+{% for article in articles %}
+<div class="row mt-4">
+    <div class="col-md-12">
+        {% for info in messages.info %}
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{ info }}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <a class="text-muted" href="{{ path_for('article', {slug: article.slug}) }}"><strong class="text-uppercase">{{ article.title }}</strong></a>
+            </div>
+            <div class="card-block">
+                <p class="card-text">{{ article.body | raw }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

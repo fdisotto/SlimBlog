@@ -1,0 +1,20 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand" href="{{ base_url() }}">{{ title }}</a>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbar">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#">Ball Bearings</a>
+            <a class="nav-item nav-link" href="#">TNT Boxes</a>
+        </div>
+        <div class="navbar-nav">
+            {% if logged %}
+                <a class="nav-item nav-link" href="{{ path_for('admin') }}">{% trans %}Admin{% endtrans %}</a>
+                <a class="nav-item nav-link" href="{{ path_for('logout') }}">{% trans %}Logout{% endtrans %}</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

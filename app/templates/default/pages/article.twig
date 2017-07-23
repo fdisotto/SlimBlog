@@ -1,0 +1,20 @@
+{% extends 'base.twig' %}
+
+{% block title %}
+    {{ article.title }} - {{ title }}
+{% endblock %}
+
+{% block body %}
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="text-uppercase text-muted">{{ article.title }}</strong>
+            </div>
+            <div class="card-block">
+                <p class="card-text">{{ article.body | raw }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

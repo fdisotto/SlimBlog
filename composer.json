@@ -15,27 +15,23 @@
         }
     },
     "require": {
-        "php": ">=5.5",
-        "ext-mcrypt": "*",
+        "php": ">=5.6",
         "slim/slim": "^3.0",
         "slim/twig-view": "^2.0",
-        "monolog/monolog": "^1.13",
-        "symfony/translation": "^3.0",
-        "symfony/config": "^3.0",
-        "symfony/yaml": "^3.0",
-        "symfony/twig-bridge": "^3.0",
-        "geggleto/psr7-acl": "^1.2",
+        "slim/flash": "^0.1",
         "illuminate/database": "^5.0",
-        "erusev/parsedown": "^1.0"
+        "erusev/parsedown": "^1.0",
+        "symfony/var-dumper": "^3.3",
+        "twig/extensions": "^1.5",
+        "symfony/translation": "^3.3",
+        "symfony/twig-bridge": "^3.3"
     },
     "scripts": {
         "post-install-cmd": [
-            "chmod -R 777 storage",
-            "rm -rf vendor/*/*/tests"
+            "chmod -R 777 storage/cache"
         ],
         "post-update-cmd": [
-            "rm -rf storage/cache/*",
-            "rm -rf storage/logs/*"
+            "rm -rf storage/cache/*"
         ]
     }
 }

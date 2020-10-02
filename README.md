@@ -1,4 +1,5 @@
 [SlimBlog](https://slimblog.fdisotto.com/)
+An Amazing Blog.
 =====
 
 [![Join the chat at https://gitter.im/fdisotto/SlimBlog](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fdisotto/SlimBlog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
